@@ -37,25 +37,6 @@ export default function HeroSection() {
           <p className="text-sm text-gray-500">
             Personalized walkthrough • No commitment required
           </p>
-
-          {/* Social Proof */}
-          <div className="mt-12 pt-8 border-t border-gray-800">
-            <p className="text-sm text-gray-400 mb-4">Trusted by veterinary clinics across the US</p>
-            <div className="flex justify-center items-center gap-8 flex-wrap">
-              <div className="text-center">
-                <p className="text-2xl font-bold text-gray-100">$15M+</p>
-                <p className="text-sm text-gray-400">Recovered annually</p>
-              </div>
-              <div className="text-center">
-                <p className="text-2xl font-bold text-gray-100">500+</p>
-                <p className="text-sm text-gray-400">Clinics using VetGuard.io</p>
-              </div>
-              <div className="text-center">
-                <p className="text-2xl font-bold text-gray-100">4.9★</p>
-                <p className="text-sm text-gray-400">Average rating</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
