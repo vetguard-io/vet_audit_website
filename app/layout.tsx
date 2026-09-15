@@ -32,6 +32,15 @@ export const metadata: Metadata = {
     description: 'Recover $2–5K/month in missed charges. VetGuard.io reads your SOAP notes and flags everything not billed.',
     creator: '@vetguard',
   },
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
 }
 
 export default function RootLayout({
