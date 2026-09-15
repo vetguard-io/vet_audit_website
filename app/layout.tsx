@@ -4,6 +4,7 @@ import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://vetguard.io'),
   title: 'VetGuard.io — AI Billing Audit for Vet Clinics',
   description: 'Recover $2–5K/month in missed charges. VetGuard.io reads your SOAP notes and flags everything not billed. 2-week free trial.',
   keywords: 'veterinary billing, billing audit, vet practice management, veterinary software, invoice audit',
