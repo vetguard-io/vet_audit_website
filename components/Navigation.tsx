@@ -22,9 +22,12 @@ export default function Navigation() {
             <Link href="/#features" className="text-sm hover:text-blue-600 transition">
               Features
             </Link>
+<<<<<<< HEAD
             <Link href="/integrations/ezyvet" className="text-sm hover:text-blue-600 transition">
               Integrations
             </Link>
+=======
+>>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
             <Link href="/pricing" className="text-sm hover:text-blue-600 transition">
               Pricing
             </Link>
@@ -80,12 +83,15 @@ export default function Navigation() {
                 Features
               </Link>
               <Link
+<<<<<<< HEAD
                 href="/integrations/ezyvet"
                 className="block px-4 py-2 text-sm hover:bg-gray-800 rounded"
               >
                 Integrations
               </Link>
               <Link
+=======
+>>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
                 href="/pricing"
                 className="block px-4 py-2 text-sm hover:bg-gray-800 rounded"
               >

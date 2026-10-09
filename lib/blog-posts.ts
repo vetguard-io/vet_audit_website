@@ -6,11 +6,15 @@ export type BlogPost = {
   date: string
   readTime: string
   content: string[]
+<<<<<<< HEAD
   body?: string
+=======
+>>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
 }
 
 export const blogPosts: BlogPost[] = [
   {
+<<<<<<< HEAD
     slug: 'vetguard-vs-manual-billing-audits',
     title: 'VetGuard.io vs. Manual Billing Audits: Which Is Better for Veterinary Practices?',
     excerpt:
@@ -302,6 +306,8 @@ That's the number that should determine whether automated veterinary billing aud
 `,
   },
   {
+=======
+>>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
     slug: 'hidden-cost-of-missed-charges',
     title: 'The hidden cost of missed charges in vet clinics',
     excerpt: 'Most practices lose 10–15% of revenue to unbilled services. Here\'s where the leaks happen and how to find them.',

@@ -3,7 +3,10 @@ import Link from 'next/link'
 
 type Props = {
   content: string
+<<<<<<< HEAD
   className?: string
+=======
+>>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
 }
 
 function renderInline(text: string, keyPrefix: string): ReactNode[] {
@@ -102,7 +105,11 @@ function slugify(text: string): string {
     .replace(/\s+/g, '-')
 }
 
+<<<<<<< HEAD
 export default function MarkdownContent({ content, className = 'legal-markdown' }: Props) {
+=======
+export default function MarkdownContent({ content }: Props) {
+>>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
   const lines = content.replace(/\r\n/g, '\n').split('\n')
   const elements: ReactNode[] = []
   let i = 0
@@ -128,7 +135,11 @@ export default function MarkdownContent({ content, className = 'legal-markdown' 
       const level = headingMatch[1].length
       const text = headingMatch[2].trim()
       const id = slugify(text.replace(/\*\*/g, ''))
+<<<<<<< HEAD
       const headingClassName =
+=======
+      const className =
+>>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
         level === 1
           ? 'text-3xl font-bold text-white mt-12 mb-4 scroll-mt-24'
           : level === 2
@@ -139,7 +150,11 @@ export default function MarkdownContent({ content, className = 'legal-markdown' 
 
       const Tag = (`h${level}` as 'h1' | 'h2' | 'h3' | 'h4')
       elements.push(
+<<<<<<< HEAD
         <Tag key={key++} id={id} className={headingClassName}>
+=======
+        <Tag key={key++} id={id} className={className}>
+>>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
           {renderInline(text, `h-${key}`)}
         </Tag>
       )
@@ -147,6 +162,7 @@ export default function MarkdownContent({ content, className = 'legal-markdown' 
       continue
     }
 
+<<<<<<< HEAD
     if (trimmed.startsWith('>')) {
       const quoteLines: string[] = []
       while (i < lines.length && lines[i].trim().startsWith('>')) {
@@ -234,6 +250,8 @@ export default function MarkdownContent({ content, className = 'legal-markdown' 
       }
     }
 
+=======
+>>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
     if (/^[-*]\s+/.test(trimmed)) {
       const items: string[] = []
       while (i < lines.length && /^[-*]\s+/.test(lines[i].trim())) {
@@ -278,9 +296,13 @@ export default function MarkdownContent({ content, className = 'legal-markdown' 
       lines[i].trim() !== '---' &&
       !/^#{1,4}\s+/.test(lines[i].trim()) &&
       !/^[-*]\s+/.test(lines[i].trim()) &&
+<<<<<<< HEAD
       !/^\d+\.\s+/.test(lines[i].trim()) &&
       !lines[i].trim().startsWith('>') &&
       !(lines[i].trim().startsWith('|') && lines[i].trim().endsWith('|'))
+=======
+      !/^\d+\.\s+/.test(lines[i].trim())
+>>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
     ) {
       paragraphLines.push(lines[i].trim())
       i += 1
@@ -293,5 +315,9 @@ export default function MarkdownContent({ content, className = 'legal-markdown' 
     )
   }
 
+<<<<<<< HEAD
   return <div className={className}>{elements}</div>
+=======
+  return <div className="legal-markdown">{elements}</div>
+>>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
 }
