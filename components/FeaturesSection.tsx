@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import Link from 'next/link'
 import { ArrowRight, Check, Zap } from 'lucide-react'
-=======
-import { Check, Zap } from 'lucide-react'
->>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
 
 export default function FeaturesSection() {
   const features = [
@@ -18,7 +14,6 @@ export default function FeaturesSection() {
     'Manual paste support'
   ]
 
-<<<<<<< HEAD
   const integrations: {
     name: string
     desc: string
@@ -31,12 +26,6 @@ export default function FeaturesSection() {
     },
     { name: 'Cornerstone', desc: 'Auto-pull SOAP notes and invoices. Seamless workflow.' },
     { name: 'Manual paste', desc: 'Works with any PIMS system. Copy-paste in seconds.' },
-=======
-  const integrations = [
-    { name: 'ezyVet', desc: 'Auto-pull SOAP notes and invoices. Seamless workflow.' },
-    { name: 'Cornerstone', desc: 'Auto-pull SOAP notes and invoices. Seamless workflow.' },
-    { name: 'Manual paste', desc: 'Works with any PIMS system. Copy-paste in seconds.' }
->>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
   ]
 
   return (
@@ -65,7 +54,6 @@ export default function FeaturesSection() {
             <div className="space-y-4">
               {integrations.map((integration, i) => (
                 <div key={i} className="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:shadow-lg hover:shadow-black/20 transition">
-<<<<<<< HEAD
                   <div className="flex items-center justify-between gap-3 mb-2">
                     <div className="flex items-center gap-3">
                       <Zap className="w-5 h-5 text-blue-500 flex-shrink-0" />
@@ -80,11 +68,6 @@ export default function FeaturesSection() {
                         <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
                     ) : null}
-=======
-                  <div className="flex items-start gap-3 mb-2">
-                    <Zap className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
-                    <h4 className="font-bold text-gray-100">{integration.name}</h4>
->>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
                   </div>
                   <p className="text-gray-400 text-sm">{integration.desc}</p>
                 </div>

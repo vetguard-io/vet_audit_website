@@ -17,10 +17,7 @@ export default function Footer() {
             <h4 className="font-bold text-white mb-4">Product</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/#features" className="hover:text-white transition">Features</Link></li>
-<<<<<<< HEAD
               <li><Link href="/integrations/ezyvet" className="hover:text-white transition">ezyVet integration</Link></li>
-=======
->>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
               <li><Link href="/pricing" className="hover:text-white transition">Pricing</Link></li>
               <li><Link href="/#how-it-works" className="hover:text-white transition">How it works</Link></li>
               <li><Link href="https://app.vetguard.io" className="hover:text-white transition">Sign in</Link></li>

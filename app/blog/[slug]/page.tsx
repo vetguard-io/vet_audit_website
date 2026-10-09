@@ -1,14 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-<<<<<<< HEAD
 import { ArrowLeft } from 'lucide-react'
 import { blogPosts, getPostBySlug } from '@/lib/blog-posts'
 import MarkdownContent from '@/components/MarkdownContent'
-=======
-import { ArrowLeft, Clock } from 'lucide-react'
-import { blogPosts, getPostBySlug } from '@/lib/blog-posts'
->>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -38,11 +33,7 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <>
       <section className="bg-gradient-to-b from-blue-950/40 to-gray-950 py-16 md:py-24">
-<<<<<<< HEAD
         <div className="max-w-3xl lg:max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-=======
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
->>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 text-sm text-blue-500 hover:text-blue-400 mb-8"
@@ -54,23 +45,13 @@ export default async function BlogPostPage({ params }: Props) {
             <span className="text-xs font-bold text-blue-400 bg-blue-950 px-3 py-1 rounded-full">
               {post.category}
             </span>
-<<<<<<< HEAD
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{post.title}</h1>
-=======
-            <span className="text-sm text-gray-500 flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5" />
-              {post.readTime}
-            </span>
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
->>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
           <p className="text-gray-500">{post.date}</p>
         </div>
       </section>
 
       <section className="py-12 md:py-20">
-<<<<<<< HEAD
         <div className="max-w-3xl lg:max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="prose prose-lg max-w-none">
             {post.body ? (
@@ -82,15 +63,6 @@ export default async function BlogPostPage({ params }: Props) {
                 </p>
               ))
             )}
-=======
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg max-w-none">
-            {post.content.map((paragraph, i) => (
-              <p key={i} className="text-gray-300 mb-6 leading-relaxed">
-                {paragraph}
-              </p>
-            ))}
->>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
           </div>
 
           <div className="mt-12 pt-8 border-t border-gray-800">

@@ -1,10 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-<<<<<<< HEAD
 import { ArrowRight } from 'lucide-react'
-=======
-import { ArrowRight, Clock } from 'lucide-react'
->>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
 import { blogPosts } from '@/lib/blog-posts'
 
 export const metadata: Metadata = {
@@ -37,13 +33,6 @@ export default function BlogPage() {
                     <span className="text-xs font-bold text-blue-400 bg-blue-950 px-3 py-1 rounded-full">
                       {post.category}
                     </span>
-<<<<<<< HEAD
-=======
-                    <span className="text-sm text-gray-500 flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5" />
-                      {post.readTime}
-                    </span>
->>>>>>> 16998b02ccba5ee981dd71fa9765c99a6ec7ac02
                   </div>
                   <h2 className="text-xl font-bold mb-3 text-gray-100">{post.title}</h2>
                   <p className="text-gray-400 mb-6 flex-1">{post.excerpt}</p>
