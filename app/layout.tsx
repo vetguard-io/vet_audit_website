@@ -1,0 +1,109 @@
+import type { Metadata } from 'next'
+import './globals.css'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://vetguard.io'),
+  applicationName: 'VetGuard.io',
+  appleWebApp: {
+    title: 'VetGuard.io',
+    capable: true,
+    statusBarStyle: 'default',
+  },
+  title: 'VetGuard.io — AI Billing Audit for Vet Clinics',
+  description: 'Recover $2–5K/month in missed charges. VetGuard.io reads your SOAP notes and flags everything not billed. 2-week free trial.',
+  keywords: 'veterinary billing, billing audit, vet practice management, veterinary software, invoice audit',
+  authors: [{ name: 'VetGuard.io' }],
+  creator: 'VetGuard.io',
+  publisher: 'VetGuard.io',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://vetguard.io',
+    siteName: 'VetGuard.io',
+    title: 'VetGuard.io — AI Billing Audit for Vet Clinics',
+    description: 'Recover $2–5K/month in missed charges. VetGuard.io reads your SOAP notes and flags everything not billed.',
+    images: [
+      {
+        url: 'https://vetguard.io/og-image.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'VetGuard.io — AI Billing Audit for Vet Clinics',
+    description: 'Recover $2–5K/month in missed charges. VetGuard.io reads your SOAP notes and flags everything not billed.',
+    creator: '@vetguard',
+  },
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+}
+
+const siteStructuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://vetguard.io/#website',
+      url: 'https://vetguard.io/',
+      name: 'VetGuard.io',
+      alternateName: ['VetGuard', 'VetGuard IO', 'vetguard.io'],
+      publisher: {
+        '@id': 'https://vetguard.io/#organization',
+      },
+    },
+    {
+      '@type': 'Organization',
+      '@id': 'https://vetguard.io/#organization',
+      name: 'VetGuard.io',
+      legalName: 'VetGuard LLC',
+      url: 'https://vetguard.io',
+      logo: 'https://vetguard.io/icon.png',
+      sameAs: [
+        'https://www.linkedin.com/company/vetguard-io/',
+        'https://www.facebook.com/people/VetGuardio/61592419634363/',
+      ],
+    },
+  ],
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="application-name" content="VetGuard.io" />
+        <meta name="apple-mobile-web-app-title" content="VetGuard.io" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="192x192" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(siteStructuredData),
+          }}
+        />
+      </head>
+      <body className="bg-gray-950 text-gray-100">
+        <Navigation />
+        <main>{children}</main>
+        <Footer />
+      </body>
+    </html>
+  )
+}

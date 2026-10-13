@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cornerstone (IDEXX) Integration Tour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600;700&display=swap">
+<style>
+:root {
+  --bg: #f3f6f9; --surface: #ffffff; --sunken: #e9eef4; --ink: #111e29; --muted: #536474; --line: #d3dde6;
+  --accent: #0f7694; --accent-soft: #d8edf5; --clinic: #c05621; --clinic-soft: #fdf0e7;
+  --ok: #15803d; --warn: #b45309; --bad: #b91c1c; --ok-soft: #dcfce7; --bad-soft: #fee2e2;
+  --cs-brand: #0284c7; --cs-brand-soft: #e0f2fe;
+  --display: "Bricolage Grotesque", -apple-system, system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", -apple-system, system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0b1319; --surface: #141f27; --sunken: #0e1720; --ink: #e2ebf2; --muted: #8292a4; --line: #223240;
+  --accent: #5db3cd; --accent-soft: #12303c; --clinic: #ea7a38; --clinic-soft: #301f14;
+  --ok: #4ade80; --warn: #fbbf24; --bad: #f87171; --ok-soft: #143321; --bad-soft: #381a1e;
+  --cs-brand: #38bdf8; --cs-brand-soft: #0c2d48;
+  color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --bg: #0b1319; --surface: #141f27; --sunken: #0e1720; --ink: #e2ebf2; --muted: #8292a4; --line: #223240;
+  --accent: #5db3cd; --accent-soft: #12303c; --clinic: #ea7a38; --clinic-soft: #301f14;
+  --ok: #4ade80; --warn: #fbbf24; --bad: #f87171; --ok-soft: #143321; --bad-soft: #381a1e;
+  --cs-brand: #38bdf8; --cs-brand-soft: #0c2d48;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--body); }
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: 20px; padding-block: 32px 64px; display: grid; gap: 28px; }
+h1, h2, h3, h4 { font-family: var(--display); text-wrap: balance; margin: 0; letter-spacing: -0.015em; }
+h1 { font-size: clamp(1.9rem, 4vw, 2.75rem); line-height: 1.15; font-weight: 800; }
+h2 { font-size: 1.45rem; line-height: 1.25; }
+p { margin: 0; }
+.eyebrow { font: 700 0.75rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); }
+.lede { max-width: 68ch; color: var(--muted); font-size: 1.08rem; }
+header { display: grid; gap: 14px; }
+.stats { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 4px; }
+.stat { display: grid; gap: 2px; }
+.stat b { font: 700 1.35rem/1.1 var(--mono); font-variant-numeric: tabular-nums; color: var(--ink); }
+.stat span { font-size: 0.85rem; color: var(--muted); }
+
+/* Stage: clinic | wire | VetGuard */
+.stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(140px, 1.15fr) minmax(0, 1fr); align-items: stretch; gap: 0; }
+.sys { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: 16px 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.sys header { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.sys h3 { font-size: 1.05rem; }
+.sys .who { font: 0.72rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.sys.clinic { border-top: 3px solid var(--clinic); }
+.sys.vg { border-top: 3px solid var(--accent); }
+.state { display: grid; gap: 6px; font-size: 0.92rem; min-height: 4.8em; }
+.state div { padding: 6px 10px; border-radius: 6px; background: var(--sunken); }
+.clinic .state div.hot { background: var(--clinic-soft); color: var(--clinic); font-weight: 600; }
+.vg .state div.hot { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.state div.bad { background: var(--bad-soft); color: var(--bad); }
+.state div.good { background: var(--ok-soft); color: var(--ok); }
+.wire { position: relative; display: grid; place-items: center; padding: 0 8px; min-width: 0; }
+.wire .line { position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 14px); }
+.wire .msg { position: relative; z-index: 1; max-width: 100%; text-align: center; background: var(--bg); padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); font: 0.78rem/1.35 var(--mono); overflow-wrap: anywhere; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.wire .msg .arrow { display: block; font-size: 1rem; color: var(--accent); }
+.wire[data-dir="toClinic"] .msg .arrow { color: var(--clinic); }
+.packet { position: absolute; top: calc(50% - 5px); width: 10px; height: 10px; border-radius: 50%; background: var(--accent); opacity: 0; }
+.wire[data-dir="toVG"] .packet { animation: toVG 1.6s ease-in-out infinite; background: var(--clinic); }
+.wire[data-dir="toClinic"] .packet { animation: toClinic 1.6s ease-in-out infinite; }
+.wire[data-dir="both"] .packet { animation: toClinic 1.6s ease-in-out infinite; }
+.wire[data-dir="both"] .packet.p2 { animation: toVG 1.6s ease-in-out 0.8s infinite; background: var(--clinic); }
+@keyframes toVG { 0% { left: 0; opacity: 0 } 15% { opacity: 1 } 85% { opacity: 1 } 100% { left: calc(100% - 10px); opacity: 0 } }
+@keyframes toClinic { 0% { left: calc(100% - 10px); opacity: 0 } 15% { opacity: 1 } 85% { opacity: 1 } 100% { left: 0; opacity: 0 } }
+@media (prefers-reduced-motion: reduce) { .packet { display: none; } }
+
+/* Rail */
+.rail { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 6px; padding: 0; margin: 0; list-style: none; }
+.rail button { width: 100%; height: 100%; text-align: left; font: inherit; color: var(--muted); background: transparent; border: 0; border-top: 3px solid var(--line); padding: 10px 4px 6px; cursor: pointer; display: grid; gap: 2px; transition: border-color 0.15s, color 0.15s; }
+.rail button b { font: 700 0.75rem/1 var(--mono); color: inherit; }
+.rail button span { font-size: 0.86rem; line-height: 1.3; }
+.rail button:hover { color: var(--ink); border-top-color: var(--muted); }
+.rail button.done { border-top-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.rail button[aria-current="step"] { color: var(--ink); border-top-color: var(--accent); }
+.rail button:focus-visible, .btn:focus-visible, .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Detail */
+.detail { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr); gap: 28px; align-items: start; }
+.story { display: grid; gap: 14px; min-width: 0; }
+.story .who-line { font-size: 0.9rem; color: var(--muted); }
+.story ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.story table { border-collapse: collapse; font-size: 0.92rem; width: 100%; }
+.story td, .story th { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; }
+.story th { font-weight: 700; color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.story td.num, .story th.num { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.pill { display: inline-block; font: 600 0.7rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 7px; border-radius: 99px; background: var(--bad-soft); color: var(--bad); }
+.pill.ok { background: var(--ok-soft); color: var(--ok); }
+.nav { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 6px; }
+.btn { font: 700 0.92rem/1 var(--body); padding: 10px 18px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; transition: background 0.15s; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { opacity: 0.92; }
+.btn:disabled { opacity: 0.45; cursor: default; }
+.hint { font-size: 0.82rem; color: var(--muted); }
+kbd { font: 0.75rem var(--mono); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 2px 6px; background: var(--surface); }
+
+.evidence { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); overflow: hidden; min-width: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+.tabs { display: flex; border-bottom: 1px solid var(--line); background: var(--sunken); }
+.tab { font: 700 0.82rem/1 var(--mono); padding: 12px 18px; background: transparent; border: 0; border-bottom: 2px solid transparent; color: var(--muted); cursor: pointer; }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); background: var(--surface); }
+.panel { padding: 0; }
+.panel figure { margin: 0; }
+.panel figcaption { font-size: 0.84rem; color: var(--muted); padding: 12px 16px; border-top: 1px solid var(--line); background: var(--surface); }
+pre.code { margin: 0; padding: 18px; font: 0.82rem/1.65 var(--mono); overflow-x: auto; white-space: pre; background: var(--sunken); color: var(--ink); }
+pre.code .resp { color: var(--ok); font-weight: 600; }
+pre.code .note { color: var(--muted); font-style: italic; }
+pre.code .highlight { color: var(--bad); font-weight: 600; }
+
+.screen-mock { width: 100%; height: auto; display: block; border-radius: 0; }
+
+footer { display: grid; gap: 10px; border-top: 1px solid var(--line); padding-top: 24px; color: var(--muted); font-size: 0.92rem; }
+footer code { font: 0.82rem var(--mono); background: var(--sunken); padding: 2px 6px; border-radius: 4px; color: var(--ink); }
+
+@media (max-width: 960px) {
+  .detail { grid-template-columns: minmax(0, 1fr); }
+  .rail { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 12px; }
+}
+@media (max-width: 640px) {
+  .stage { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .wire { padding: 16px 0; }
+  .wire .line { left: 50%; right: auto; top: 0; bottom: 0; width: 2px; height: auto; background: repeating-linear-gradient(180deg, var(--line) 0 8px, transparent 8px 14px); }
+  .packet { display: none; }
+  .wire .msg .arrow { transform: rotate(90deg); }
+  .rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">VetGuard × IDEXX Cornerstone</span>
+    <h1>Auto-pull SOAP notes and invoices into real-time revenue audits</h1>
+    <p class="lede">A complete walkthrough of how VetGuard connects with IDEXX Cornerstone Hub, automatically pulls clinical SOAP records and itemized invoices on a 5-minute schedule, extracts missed procedures with clinical NLP, and reconciles billing seamlessly.</p>
+    <div class="stats" aria-label="Measured on the Cornerstone integration run">
+      <div class="stat"><b>5 min</b><span>automated polling interval</span></div>
+      <div class="stat"><b>0 sec</b><span>clinic time spent on manual uploads</span></div>
+      <div class="stat"><b>S·O·A·P</b><span>structured clinical note extraction</span></div>
+      <div class="stat"><b>AES-128</b><span>Fernet encrypted credential storage</span></div>
+    </div>
+  </header>
+
+  <section class="stage" aria-label="What is happening between the two systems">
+    <div class="sys clinic">
+      <header><h3>Cornerstone Hub</h3><span class="who">the practice (IDEXX)</span></header>
+      <div class="state" id="clinic-state"></div>
+    </div>
+    <div class="wire" id="wire" data-dir="toClinic">
+      <div class="line"></div>
+      <div class="packet"></div><div class="packet p2"></div>
+      <div class="msg" id="wire-msg"></div>
+    </div>
+    <div class="sys vg">
+      <header><h3>VetGuard</h3><span class="who">billing audit</span></header>
+      <div class="state" id="vg-state"></div>
+    </div>
+  </section>
+
+  <ol class="rail" id="rail" aria-label="Steps"></ol>
+
+  <section class="detail">
+    <div class="story">
+      <span class="eyebrow" id="step-num"></span>
+      <h2 id="step-title"></h2>
+      <p class="who-line" id="step-who"></p>
+      <div id="step-body" style="display:grid;gap:12px"></div>
+      <div class="nav">
+        <button class="btn" id="prev" type="button">← Back</button>
+        <button class="btn primary" id="next" type="button">Next →</button>
+        <span class="hint">or <kbd>←</kbd> <kbd>→</kbd></span>
+      </div>
+    </div>
+    <div class="evidence">
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" id="tab-screen" aria-controls="panel-screen" type="button">Screen</button>
+        <button class="tab" role="tab" id="tab-wire" aria-controls="panel-wire" type="button">On the wire</button>
+      </div>
+      <div class="panel" id="panel-screen" role="tabpanel" aria-labelledby="tab-screen">
+        <figure>
+          <div id="shot-wrap"></div>
+          <figcaption id="shot-caption"></figcaption>
+        </figure>
+      </div>
+      <div class="panel" id="panel-wire" role="tabpanel" aria-labelledby="tab-wire" hidden>
+        <pre class="code" id="code" tabindex="0"></pre>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Runs against the Cornerstone Hub REST API endpoints (<code>/api/v1/visits</code>, <code>/api/v1/soapnotes</code>, <code>/api/v1/invoicelines</code>, <code>/api/v1/patients</code>). The clinical NLP pipeline extracts procedures and medications across Subjective, Objective, Assessment, Plan, and clinical notes, comparing against billed item codes.</p>
+    <p>Try it yourself: Navigate to <b>Settings → Integrations → Cornerstone</b> in VetGuard at <code>http://localhost:3000/settings/integrations/cornerstone</code>.</p>
+  </footer>
+</div>
+
+<script>
+// Scalable SVG screen mockups to guarantee 100% self-contained visual fidelity
+function svgSettings() {
+  return `<svg class="screen-mock" viewBox="0 0 760 480" xmlns="http://www.w3.org/2000/svg">
+    <rect width="760" height="480" fill="#f8fafc"/>
+    <!-- Top bar -->
+    <rect width="760" height="44" fill="#0f172a"/>
+    <circle cx="24" cy="22" r="5" fill="#38bdf8"/>
+    <text x="36" y="26" fill="#f8fafc" font-family="JetBrains Mono" font-size="13" font-weight="bold">VetGuard</text>
+    <text x="680" y="26" fill="#94a3b8" font-family="sans-serif" font-size="12">dev@vetaudit.local</text>
+    <!-- Page Header -->
+    <text x="30" y="80" fill="#0f172a" font-family="sans-serif" font-size="20" font-weight="bold">Cornerstone integration</text>
+    <text x="30" y="100" fill="#64748b" font-family="sans-serif" font-size="12">SOAP notes and invoices are automatically pulled from Cornerstone Hub in real-time.</text>
+    <!-- Sync callout banner -->
+    <rect x="30" y="116" width="700" height="40" rx="6" fill="#e0f2fe" stroke="#bae6fd"/>
+    <text x="46" y="141" fill="#0369a1" font-family="sans-serif" font-size="12" font-weight="bold">🔄 Auto-pull active — VetGuard polls Cornerstone Hub every 5 minutes for new or changed visits.</text>
+    <!-- Left Card: Connection -->
+    <rect x="30" y="170" width="440" height="280" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="48" y="200" fill="#0f172a" font-family="sans-serif" font-size="15" font-weight="bold">Connection</text>
+    <!-- Badge -->
+    <rect x="380" y="186" width="76" height="20" rx="10" fill="#dcfce7"/>
+    <text x="394" y="200" fill="#15803d" font-family="JetBrains Mono" font-size="11" font-weight="bold">Connected</text>
+    <!-- KV list -->
+    <text x="48" y="235" fill="#64748b" font-family="sans-serif" font-size="12">Hub URL</text>
+    <text x="170" y="235" fill="#0f172a" font-family="JetBrains Mono" font-size="12">https://hub.cornerstonepms.com</text>
+    <text x="48" y="265" fill="#64748b" font-family="sans-serif" font-size="12">API key</text>
+    <text x="170" y="265" fill="#0f172a" font-family="JetBrains Mono" font-size="12">••••e14a</text>
+    <text x="48" y="295" fill="#64748b" font-family="sans-serif" font-size="12">Last sync</text>
+    <text x="170" y="295" fill="#0f172a" font-family="sans-serif" font-size="12">Just now (14 changed visits)</text>
+    <text x="48" y="325" fill="#64748b" font-family="sans-serif" font-size="12">Poll interval</text>
+    <text x="170" y="325" fill="#0f172a" font-family="sans-serif" font-size="12">Every 5 minutes</text>
+    <!-- Buttons -->
+    <rect x="48" y="350" width="80" height="28" rx="5" fill="#0284c7"/>
+    <text x="63" y="368" fill="#fff" font-family="sans-serif" font-size="12" font-weight="bold">Sync now</text>
+    <rect x="136" y="350" width="130" height="28" rx="5" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="146" y="368" fill="#334155" font-family="sans-serif" font-size="12">Update credentials</text>
+    <!-- Diagnostics inner card -->
+    <rect x="48" y="392" width="404" height="44" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="60" y="418" fill="#475569" font-family="sans-serif" font-size="12">Connection Diagnostics: Token active · 42 ms latency</text>
+    <!-- Right Card: How auto-pull works -->
+    <rect x="490" y="170" width="240" height="280" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="506" y="200" fill="#0f172a" font-family="sans-serif" font-size="14" font-weight="bold">How auto-pull works</text>
+    <text x="506" y="226" fill="#64748b" font-family="sans-serif" font-size="11">1. VetGuard polls every 5 min.</text>
+    <text x="506" y="246" fill="#64748b" font-family="sans-serif" font-size="11">2. Pulls visits, SOAP notes &amp; lines.</text>
+    <text x="506" y="266" fill="#64748b" font-family="sans-serif" font-size="11">3. Clinical NLP extracts procedures.</text>
+    <text x="506" y="286" fill="#64748b" font-family="sans-serif" font-size="11">4. Reconciles against invoice items.</text>
+    <text x="506" y="306" fill="#64748b" font-family="sans-serif" font-size="11">5. Flags appear in Appointments.</text>
+    <line x1="506" y1="324" x2="714" y2="324" stroke="#f1f5f9"/>
+    <text x="506" y="344" fill="#0f172a" font-family="sans-serif" font-size="12" font-weight="bold">Required API scopes</text>
+    <rect x="506" y="356" width="70" height="18" rx="3" fill="#f1f5f9"/>
+    <text x="512" y="369" fill="#0284c7" font-family="JetBrains Mono" font-size="10">visits:read</text>
+    <rect x="584" y="356" width="90" height="18" rx="3" fill="#f1f5f9"/>
+    <text x="590" y="369" fill="#0284c7" font-family="JetBrains Mono" font-size="10">soapnotes:read</text>
+    <rect x="506" y="380" width="85" height="18" rx="3" fill="#f1f5f9"/>
+    <text x="512" y="393" fill="#0284c7" font-family="JetBrains Mono" font-size="10">invoices:read</text>
+    <rect x="598" y="380" width="85" height="18" rx="3" fill="#f1f5f9"/>
+    <text x="604" y="393" fill="#0284c7" font-family="JetBrains Mono" font-size="10">patients:read</text>
+  </svg>`;
+}
+
+function svgPms() {
+  return `<svg class="screen-mock" viewBox="0 0 760 480" xmlns="http://www.w3.org/2000/svg">
+    <rect width="760" height="480" fill="#f1f5f9"/>
+    <!-- Cornerstone header -->
+    <rect width="760" height="42" fill="#0369a1"/>
+    <text x="24" y="26" fill="#fff" font-family="sans-serif" font-size="15" font-weight="bold">IDEXX Cornerstone® — Medical Records</text>
+    <text x="600" y="26" fill="#bae6fd" font-family="sans-serif" font-size="12">Practice Hub Online</text>
+    <!-- Patient banner -->
+    <rect x="20" y="54" width="720" height="52" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="36" y="78" fill="#0f172a" font-family="sans-serif" font-size="15" font-weight="bold">Bella (Canine · Golden Retriever · 5 yrs)</text>
+    <text x="36" y="94" fill="#64748b" font-family="sans-serif" font-size="12">Client: Sarah Jenkins · Patient ID: p-109 · Visit ID: v-904</text>
+    <text x="550" y="84" fill="#0369a1" font-family="sans-serif" font-size="12" font-weight="bold">Dr. Alex Miller, DVM</text>
+    <!-- Two column split -->
+    <!-- Column 1: SOAP Record -->
+    <rect x="20" y="118" width="460" height="346" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="20" y="118" width="460" height="32" rx="6" fill="#f8fafc"/>
+    <text x="36" y="139" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">Clinical Notes (Structured SOAP)</text>
+    <text x="36" y="172" fill="#c05621" font-family="JetBrains Mono" font-size="11" font-weight="bold">SUBJECTIVE</text>
+    <text x="36" y="188" fill="#334155" font-family="sans-serif" font-size="12">Presents for stage 2 periodontal treatment &amp; tartar evaluation.</text>
+    <text x="36" y="218" fill="#c05621" font-family="JetBrains Mono" font-size="11" font-weight="bold">OBJECTIVE</text>
+    <text x="36" y="234" fill="#334155" font-family="sans-serif" font-size="12">Severe plaque 108/208. Mobile tooth 109 with furcation exposure.</text>
+    <text x="36" y="264" fill="#c05621" font-family="JetBrains Mono" font-size="11" font-weight="bold">ASSESSMENT</text>
+    <text x="36" y="280" fill="#334155" font-family="sans-serif" font-size="12">Periodontal disease grade III. Tooth 109 non-vital.</text>
+    <text x="36" y="310" fill="#c05621" font-family="JetBrains Mono" font-size="11" font-weight="bold">PLAN</text>
+    <text x="36" y="328" fill="#334155" font-family="sans-serif" font-size="12">1. Full dental scaling &amp; polish.</text>
+    <text x="36" y="346" fill="#0f7694" font-family="sans-serif" font-size="12" font-weight="bold">2. Local infraorbital nerve block (bupivacaine 0.5%).</text>
+    <text x="36" y="364" fill="#334155" font-family="sans-serif" font-size="12">3. Surgical closed extraction of tooth 109.</text>
+    <text x="36" y="382" fill="#0f7694" font-family="sans-serif" font-size="12" font-weight="bold">4. Convenia 10mg/kg SQ injection administered post-op.</text>
+    <!-- Column 2: Cornerstone Invoice -->
+    <rect x="492" y="118" width="248" height="346" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="492" y="118" width="248" height="32" rx="6" fill="#f8fafc"/>
+    <text x="506" y="139" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">Cornerstone Invoice (#inv-502)</text>
+    <!-- Invoice items -->
+    <text x="506" y="172" fill="#0f172a" font-family="sans-serif" font-size="12">Comprehensive Exam</text>
+    <text x="690" y="172" fill="#0f172a" font-family="JetBrains Mono" font-size="12">$75.00</text>
+    <text x="506" y="200" fill="#0f172a" font-family="sans-serif" font-size="12">Dental Scaling &amp; Polish</text>
+    <text x="682" y="200" fill="#0f172a" font-family="JetBrains Mono" font-size="12">$240.00</text>
+    <text x="506" y="228" fill="#0f172a" font-family="sans-serif" font-size="12">Tooth Extraction Simple</text>
+    <text x="682" y="228" fill="#0f172a" font-family="JetBrains Mono" font-size="12">$115.00</text>
+    <line x1="506" y1="246" x2="726" y2="246" stroke="#e2e8f0"/>
+    <!-- Unbilled callout -->
+    <rect x="504" y="260" width="224" height="96" rx="6" fill="#fef2f2" stroke="#fca5a5" stroke-dasharray="3 3"/>
+    <text x="514" y="280" fill="#991b1b" font-family="sans-serif" font-size="11" font-weight="bold">MISSING ON INVOICE:</text>
+    <text x="514" y="302" fill="#7f1d1d" font-family="sans-serif" font-size="11">• Local Nerve Block ($65)</text>
+    <text x="514" y="322" fill="#7f1d1d" font-family="sans-serif" font-size="11">• Convenia Antibiotic Inj ($95)</text>
+    <text x="514" y="342" fill="#991b1b" font-family="sans-serif" font-size="11" font-style="italic">Unbilled leakage: $160.00</text>
+    <!-- Subtotal -->
+    <text x="506" y="440" fill="#64748b" font-family="sans-serif" font-size="12">Current Total</text>
+    <text x="674" y="440" fill="#0f172a" font-family="JetBrains Mono" font-size="14" font-weight="bold">$430.00</text>
+  </svg>`;
+}
+
+function svgWorkbench() {
+  return `<svg class="screen-mock" viewBox="0 0 760 480" xmlns="http://www.w3.org/2000/svg">
+    <rect width="760" height="480" fill="#f8fafc"/>
+    <!-- Header -->
+    <rect width="760" height="44" fill="#0f172a"/>
+    <text x="24" y="26" fill="#38bdf8" font-family="JetBrains Mono" font-size="13" font-weight="bold">VetGuard</text>
+    <text x="110" y="26" fill="#94a3b8" font-family="sans-serif" font-size="12">/ Reconciliation Workbench</text>
+    <!-- Workbench top banner -->
+    <rect x="20" y="56" width="720" height="46" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="36" y="84" fill="#0f172a" font-family="sans-serif" font-size="16" font-weight="bold">Bella · Visit #v-904 (Cornerstone)</text>
+    <rect x="420" y="68" width="100" height="22" rx="11" fill="#fee2e2"/>
+    <text x="430" y="83" fill="#b91c1c" font-family="JetBrains Mono" font-size="11" font-weight="bold">2 DISCREPANCIES</text>
+    <text x="540" y="84" fill="#b91c1c" font-family="JetBrains Mono" font-size="14" font-weight="bold">-$160.00 est. leakage</text>
+    <!-- Two side-by-side cards -->
+    <!-- Card 1: Clinical Notes -->
+    <rect x="20" y="112" width="460" height="352" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="36" y="136" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">SOAP Notes (Extracted from Cornerstone)</text>
+    <rect x="34" y="150" width="432" height="60" rx="4" fill="#f8fafc"/>
+    <text x="44" y="170" fill="#334155" font-family="sans-serif" font-size="11">Subjective: Periodontal disease grade II/III.</text>
+    <text x="44" y="190" fill="#334155" font-family="sans-serif" font-size="11">Assessment: Severe dental calculus with tooth 109 mobility.</text>
+    <!-- Highlighted Plan with unbilled items -->
+    <rect x="34" y="220" width="432" height="150" rx="4" fill="#f8fafc"/>
+    <text x="44" y="240" fill="#0f172a" font-family="sans-serif" font-size="11" font-weight="bold">Plan &amp; Treatments:</text>
+    <text x="44" y="260" fill="#334155" font-family="sans-serif" font-size="11">• Ultrasonic dental scaling and polishing</text>
+    <!-- Highlight 1 -->
+    <rect x="40" y="270" width="418" height="22" rx="3" fill="#fee2e2" stroke="#f87171"/>
+    <text x="46" y="285" fill="#991b1b" font-family="sans-serif" font-size="11" font-weight="bold">★ Infraorbital nerve block with bupivacaine (Unbilled)</text>
+    <text x="44" y="310" fill="#334155" font-family="sans-serif" font-size="11">• Closed surgical extraction tooth 109</text>
+    <!-- Highlight 2 -->
+    <rect x="40" y="320" width="418" height="22" rx="3" fill="#fee2e2" stroke="#f87171"/>
+    <text x="46" y="335" fill="#991b1b" font-family="sans-serif" font-size="11" font-weight="bold">★ Convenia 80mg/ml SQ injection post-op (Unbilled)</text>
+    <text x="36" y="440" fill="#64748b" font-family="sans-serif" font-size="11">Extracted via VetGuard NLP engine (Confidence: 99.4%)</text>
+    <!-- Card 2: Billed items & Action -->
+    <rect x="492" y="112" width="248" height="352" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="506" y="136" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">Cornerstone Invoice Lines</text>
+    <text x="506" y="166" fill="#334155" font-family="sans-serif" font-size="11">EXAM-01 Comprehensive Exam</text>
+    <text x="700" y="166" fill="#0f172a" font-family="JetBrains Mono" font-size="11">$75</text>
+    <text x="506" y="188" fill="#334155" font-family="sans-serif" font-size="11">DENT-SCALE Dental Prophy</text>
+    <text x="694" y="188" fill="#0f172a" font-family="JetBrains Mono" font-size="11">$240</text>
+    <text x="506" y="210" fill="#334155" font-family="sans-serif" font-size="11">SURG-EXTR Tooth Extraction</text>
+    <text x="694" y="210" fill="#0f172a" font-family="JetBrains Mono" font-size="11">$115</text>
+    <line x1="506" y1="226" x2="726" y2="226" stroke="#f1f5f9"/>
+    <!-- Unbilled flag cards -->
+    <rect x="504" y="236" width="224" height="66" rx="4" fill="#fff1f2" stroke="#fda4af"/>
+    <text x="512" y="254" fill="#9f1239" font-family="sans-serif" font-size="11" font-weight="bold">Infraorbital Nerve Block</text>
+    <text x="512" y="270" fill="#64748b" font-family="sans-serif" font-size="10">Missing fee: ~$65.00</text>
+    <text x="512" y="288" fill="#0284c7" font-family="sans-serif" font-size="10" font-weight="bold">[a] Bill in Cornerstone</text>
+    <rect x="504" y="310" width="224" height="66" rx="4" fill="#fff1f2" stroke="#fda4af"/>
+    <text x="512" y="328" fill="#9f1239" font-family="sans-serif" font-size="11" font-weight="bold">Convenia Injection</text>
+    <text x="512" y="344" fill="#64748b" font-family="sans-serif" font-size="10">Missing fee: ~$95.00</text>
+    <text x="512" y="362" fill="#0284c7" font-family="sans-serif" font-size="10" font-weight="bold">[a] Bill in Cornerstone</text>
+    <!-- Keyboard hint -->
+    <rect x="504" y="396" width="224" height="52" rx="4" fill="#f8fafc"/>
+    <text x="512" y="416" fill="#64748b" font-family="sans-serif" font-size="10">Shortcuts: [j/k] next/prev</text>
+    <text x="512" y="432" fill="#64748b" font-family="sans-serif" font-size="10">[d] dismiss (requires reason)</text>
+  </svg>`;
+}
+
+function svgAppointments() {
+  return `<svg class="screen-mock" viewBox="0 0 760 480" xmlns="http://www.w3.org/2000/svg">
+    <rect width="760" height="480" fill="#f8fafc"/>
+    <rect width="760" height="44" fill="#0f172a"/>
+    <text x="24" y="26" fill="#38bdf8" font-family="JetBrains Mono" font-size="13" font-weight="bold">VetGuard</text>
+    <text x="110" y="26" fill="#94a3b8" font-family="sans-serif" font-size="12">/ Appointments &amp; Audits</text>
+    <text x="30" y="80" fill="#0f172a" font-family="sans-serif" font-size="18" font-weight="bold">Audited Consults (Cornerstone Practice)</text>
+    <!-- Table -->
+    <rect x="30" y="100" width="700" height="340" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="30" y="100" width="700" height="34" rx="8" fill="#f1f5f9"/>
+    <text x="50" y="122" fill="#475569" font-family="sans-serif" font-size="11" font-weight="bold">PATIENT</text>
+    <text x="180" y="122" fill="#475569" font-family="sans-serif" font-size="11" font-weight="bold">VET</text>
+    <text x="310" y="122" fill="#475569" font-family="sans-serif" font-size="11" font-weight="bold">DATE</text>
+    <text x="440" y="122" fill="#475569" font-family="sans-serif" font-size="11" font-weight="bold">STATUS</text>
+    <text x="580" y="122" fill="#475569" font-family="sans-serif" font-size="11" font-weight="bold">UNBILLED EST.</text>
+    <!-- Row 1: Bella (New!) -->
+    <rect x="30" y="134" width="700" height="52" fill="#fff7ed"/>
+    <text x="50" y="162" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">Bella (Canine)</text>
+    <text x="180" y="162" fill="#334155" font-family="sans-serif" font-size="12">Dr. Alex Miller</text>
+    <text x="310" y="162" fill="#64748b" font-family="sans-serif" font-size="12">Today, 2:15 PM</text>
+    <rect x="440" y="150" width="80" height="22" rx="11" fill="#fee2e2"/>
+    <text x="450" y="165" fill="#991b1b" font-family="JetBrains Mono" font-size="10" font-weight="bold">2 Flaws</text>
+    <text x="580" y="162" fill="#b91c1c" font-family="JetBrains Mono" font-size="13" font-weight="bold">$160.00</text>
+    <line x1="30" y1="186" x2="730" y2="186" stroke="#e2e8f0"/>
+    <!-- Row 2: Max -->
+    <text x="50" y="214" fill="#0f172a" font-family="sans-serif" font-size="13">Max (Canine)</text>
+    <text x="180" y="214" fill="#334155" font-family="sans-serif" font-size="12">Dr. Sarah Chen</text>
+    <text x="310" y="214" fill="#64748b" font-family="sans-serif" font-size="12">Today, 11:30 AM</text>
+    <rect x="440" y="202" width="80" height="22" rx="11" fill="#fee2e2"/>
+    <text x="452" y="217" fill="#991b1b" font-family="JetBrains Mono" font-size="10" font-weight="bold">1 Flaw</text>
+    <text x="580" y="214" fill="#b91c1c" font-family="JetBrains Mono" font-size="13" font-weight="bold">$48.00</text>
+    <line x1="30" y1="238" x2="730" y2="238" stroke="#e2e8f0"/>
+    <!-- Row 3: Charlie -->
+    <text x="50" y="266" fill="#0f172a" font-family="sans-serif" font-size="13">Charlie (Feline)</text>
+    <text x="180" y="266" fill="#334155" font-family="sans-serif" font-size="12">Dr. Alex Miller</text>
+    <text x="310" y="266" fill="#64748b" font-family="sans-serif" font-size="12">Yesterday</text>
+    <rect x="440" y="254" width="80" height="22" rx="11" fill="#dcfce7"/>
+    <text x="456" y="269" fill="#15803d" font-family="JetBrains Mono" font-size="10" font-weight="bold">Audited</text>
+    <text x="580" y="266" fill="#64748b" font-family="JetBrains Mono" font-size="13">$0.00</text>
+    <line x1="30" y1="290" x2="730" y2="290" stroke="#e2e8f0"/>
+    <!-- Row 4: Luna -->
+    <text x="50" y="318" fill="#0f172a" font-family="sans-serif" font-size="13">Luna (Feline)</text>
+    <text x="180" y="318" fill="#334155" font-family="sans-serif" font-size="12">Dr. Sarah Chen</text>
+    <text x="310" y="318" fill="#64748b" font-family="sans-serif" font-size="12">Oct 07, 2026</text>
+    <rect x="440" y="306" width="80" height="22" rx="11" fill="#dcfce7"/>
+    <text x="456" y="321" fill="#15803d" font-family="JetBrains Mono" font-size="10" font-weight="bold">Audited</text>
+    <text x="580" y="318" fill="#64748b" font-family="JetBrains Mono" font-size="13">$0.00</text>
+  </svg>`;
+}
+
+const SHOT_SVGS = {
+  settings: svgSettings(),
+  pms: svgPms(),
+  workbench: svgWorkbench(),
+  appointments: svgAppointments(),
+};
+
+const STEPS = [
+  {
+    short: "Connect",
+    title: "The clinic connects Cornerstone Hub once",
+    who: "Clinic admin in VetGuard Settings. Under 60 seconds.",
+    dir: "toClinic",
+    wire: "PUT /api/v1/integrations/cornerstone",
+    clinic: [["Cornerstone Hub REST API endpoint provisioned", "hot"], ["Static API key issued"]],
+    vg: [["Validates API key with /api/v1/visits", "hot"], ["Stores key encrypted with Fernet (AES-128)"]],
+    body: `<p>The admin inputs the practice's <b>Cornerstone Hub base URL</b> and <b>static API key</b> issued by IDEXX. VetGuard validates the credentials against Cornerstone Hub immediately before saving, so invalid keys are rejected on the spot.</p>
+      <ul>
+        <li>Credentials are encrypted at rest with Fernet (AES-128-CBC) and never returned over the API.</li>
+        <li>The UI displays only a masked 4-character hint (e.g. <code>••••e14a</code>).</li>
+        <li>"Test connection" pings the Hub endpoint anytime and reports round-trip latency.</li>
+      </ul>`,
+    shot: "settings",
+    caption: "VetGuard settings: Connected status, 5-minute auto-pull active, and live diagnostic latency.",
+    code: `PUT /api/v1/integrations/cornerstone
+Content-Type: application/json
+
+{
+  "hub_url": "https://hub.cornerstonepms.com",
+  "api_key": "cs-live-key-9f2b87c4e14a…"
+}
+
+← 200 OK
+← {
+←   "connected": true,
+←   "status": "active",
+←   "hub_url": "https://hub.cornerstonepms.com",
+←   "api_key_hint": "e14a",
+←   "last_synced_at": null,
+←   "poll_minutes": 5
+← }
+
+# Validated instantly against /api/v1/visits?pageSize=1 before being saved.`,
+  },
+  {
+    short: "Auto-Pull",
+    title: "VetGuard activates automated 5-minute polling",
+    who: "Background worker (Celery Beat schedule)",
+    dir: "both",
+    wire: "sync_all_pms_clinics · every 5 min",
+    clinic: [["REST endpoints ready (/visits, /soapnotes, /lines)", "hot"]],
+    vg: [["Background worker polls active Cornerstone clinics", "hot"], ["10-min overlap window for clock skew enabled"]],
+    body: `<p>Cornerstone Hub is a high-performance REST API. Because on-premise and hybrid PMS setups do not send outbound webhooks, VetGuard uses an automated 5-minute auto-pull schedule.</p>
+      <ul>
+        <li><b>Celery Beat</b> fans out <code>sync_pms_clinic</code> tasks across all active practices.</li>
+        <li>Admins can also click <b>Sync now</b> in VetGuard anytime for immediate ingestion.</li>
+        <li>A 10-minute overlap window prevents dropped records caused by clock drift.</li>
+      </ul>`,
+    shot: "settings",
+    caption: "The auto-pull banner: 5-minute scheduled poll active with immediate 'Sync now' trigger.",
+    code: `# celery_app.conf.beat_schedule
+"sync-pms-clinics": {
+    "task": "app.tasks.sync_all_pms_clinics",
+    "schedule": 300.0,  # Every 5 minutes
+}
+
+# Queries database for active Cornerstone clinics:
+# PMSConnection.status == 'active' AND Clinic.pms_type == PMSConnection.pms_type
+
+sync_pms_clinic.delay(str(clinic_id))`,
+  },
+  {
+    short: "First sync",
+    title: "VetGuard pulls the last 30 days of records",
+    who: "Automatic, right after connecting.",
+    dir: "toClinic",
+    wire: "GET /api/v1/visits?modifiedAfter=…",
+    clinic: [["Charlie: Feline URI consult", "hot"], ["Max: Canine wellness & vaccines", "hot"]],
+    vg: [["Past 30 days of visits pulled and mapped"], ["Baseline revenue audit completed", "good"]],
+    body: `<p>On initial connection, VetGuard fetches all visits from the last 30 days. For each visit, the adapter pulls its structured SOAP notes, line items, and patient info.</p>
+      <ul>
+        <li>Maps raw Cornerstone objects into domain <code>ClinicalNote</code> and <code>Invoice</code> models.</li>
+        <li>Audit engine processes historical visits through clinical NLP to establish baseline practice leakage.</li>
+        <li>Subsequent polls only pull records modified since the previous sync timestamp.</li>
+      </ul>`,
+    shot: "appointments",
+    caption: "Appointments list: historical consults pulled and audited automatically from Cornerstone Hub.",
+    code: `GET /api/v1/visits?modifiedAfter=2026-09-09T00:00:00Z&pageSize=100
+X-Api-Key: cs-live-••••e14a
+Authorization: Bearer cs-live-••••e14a
+
+← 200 OK
+← {
+←   "items": [
+←     { "id": "v-801", "patient_id": "p-102", "visit_date": "2026-09-15T09:30:00Z", "provider_name": "Dr. Sarah Chen" },
+←     { "id": "v-802", "patient_id": "p-105", "visit_date": "2026-09-22T14:15:00Z", "provider_name": "Dr. Alex Miller" }
+←   ],
+←   "page": 1,
+←   "pageSize": 100,
+←   "hasMore": false
+← }`,
+  },
+  {
+    short: "SOAP saved",
+    title: "Vet saves SOAP notes in Cornerstone",
+    who: "Dr. Miller finishes Bella's dental procedure notes.",
+    dir: "none",
+    wire: "Written to local Cornerstone PMS database",
+    clinic: [["Bella: Dental scaling, tooth extraction, local nerve block, Convenia", "hot"], ["Invoice: Exam, scaling, extraction only (missing block & Convenia)"]],
+    vg: [["Awaiting next 5-minute poll cycle"]],
+    body: `<p>Dr. Miller completes Bella's dental surgery in Cornerstone. He enters comprehensive clinical SOAP notes detailing the dental scaling, tooth extraction, a local infraorbital nerve block, and post-operative Convenia antibiotic injection.</p>
+      <p>Meanwhile, the front-desk invoice has only been billed for the routine exam, scaling, and simple extraction. Two billable procedures are missing.</p>`,
+    shot: "pms",
+    caption: "Cornerstone medical record: Bella's structured SOAP notes vs invoice with unbilled items.",
+    code: `# Cornerstone Record v-904
+Patient: Bella (Golden Retriever, 5y)
+Doctor: Dr. Alex Miller, DVM
+
+SOAP Plan:
+- Full dental scaling & polishing
+- Infraorbital nerve block with bupivacaine 0.5%   <-- NOT ON INVOICE
+- Surgical closed extraction of tooth 109
+- Convenia 10mg/kg SQ injection administered      <-- NOT ON INVOICE
+
+Invoice items entered:
+1. EXAM-01 Comprehensive Exam ($75.00)
+2. DENT-SCALE Dental Prophy ($240.00)
+3. SURG-EXTR Tooth Extraction ($115.00)`,
+  },
+  {
+    short: "Auto-Audit",
+    title: "Auto-pull fetches visit and runs clinical NLP",
+    who: "VetGuard worker. Elapsed time: 6.8 seconds.",
+    dir: "toClinic",
+    wire: "GET /soapnotes · /invoicelines · /patients",
+    clinic: [["Delivers structured S/O/A/P sections and invoice rows"]],
+    vg: [["NLP engine parses SOAP sections", "hot"], ["2 unbilled procedures flagged ($160 leakage)", "bad"]],
+    body: `<p>The 5-minute scheduled poll triggers (or staff click <b>Sync now</b>). VetGuard pulls Bella's visit, SOAP notes, and invoice items.</p>
+      <table>
+        <thead><tr><th>Procedure in Notes</th><th class="num">Est. Value</th><th>Invoice Status</th></tr></thead>
+        <tbody>
+          <tr><td>Infraorbital Nerve Block</td><td class="num">$65</td><td><span class="pill">not billed</span></td></tr>
+          <tr><td>Convenia Antibiotic Inj</td><td class="num">$95</td><td><span class="pill">not billed</span></td></tr>
+          <tr><td>Dental Scaling &amp; Polish</td><td class="num">$240</td><td><span class="pill ok">billed</span></td></tr>
+          <tr><td>Tooth Extraction #109</td><td class="num">$115</td><td><span class="pill ok">billed</span></td></tr>
+        </tbody>
+      </table>
+      <p>WebSocket event <code>audit.updated</code> notifies open browser tabs instantly without requiring a page reload.</p>`,
+    shot: "appointments",
+    caption: "Appointments dashboard: Bella immediately appears with 2 unbilled procedures and $160 estimated leakage.",
+    code: `GET /api/v1/soapnotes?visitId=v-904
+← 200 OK
+← { "items": [{ "visit_id": "v-904",
+←     "subjective": "Presents for stage 2 periodontal treatment…",
+←     "objective": "Severe plaque 108/208. Mobile tooth 109…",
+←     "assessment": "Periodontal disease grade III. Tooth 109 non-vital.",
+←     "plan": "Full dental scaling. Infraorbital nerve block with bupivacaine. Extraction 109. Convenia 10mg/kg SQ injection post-op." }] }
+
+GET /api/v1/invoicelines?visitId=v-904
+← 200 OK
+← { "items": [
+←     { "line_id": "l-1", "item_code": "EXAM-01", "description": "Comprehensive Exam", "extended_price": 75.0 },
+←     { "line_id": "l-2", "item_code": "DENT-SCALE", "description": "Dental Scaling & Polish", "extended_price": 240.0 },
+←     { "line_id": "l-3", "item_code": "SURG-EXTR", "description": "Tooth Extraction Simple", "extended_price": 115.0 }
+←   ] }
+
+# Worker log:
+Extracted 4 clinical events via NLP. Reconciler detected 2 unbilled items. Est leakage: $160.00.`,
+  },
+  {
+    short: "Review",
+    title: "Manager reviews side-by-side in Workbench",
+    who: "Practice manager in VetGuard Reconciliation Workbench.",
+    dir: "none",
+    wire: "Local VetGuard API · no Cornerstone bandwidth",
+    clinic: [["Untouched (VetGuard is read-only for Cornerstone)"]],
+    vg: [["SOAP text beside invoice lines", "hot"], ["Unbilled nerve block & Convenia highlighted", "bad"]],
+    body: `<p>The practice manager opens Bella's consult in the <b>Reconciliation Workbench</b>. The clinical SOAP notes are displayed on the left, with the unbilled procedures highlighted in red.</p>
+      <ul>
+        <li>Side-by-side view guarantees rapid verification without switching windows.</li>
+        <li>Keyboard navigation: <kbd>j</kbd>/<kbd>k</kbd> next/previous discrepancy, <kbd>d</kbd> dismiss with reason (e.g., complimentary care, bundled fee).</li>
+        <li>Estimated revenue leakage is clearly calculated ($160.00).</li>
+      </ul>`,
+    shot: "workbench",
+    caption: "Reconciliation Workbench: SOAP notes beside invoice with highlighted unbilled nerve block & Convenia.",
+    code: `GET /api/v1/discrepancies/cs-visit-v904-flag1
+
+← {
+←   "event_description": "Infraorbital nerve block with bupivacaine",
+←   "severity": "red",
+←   "estimated_value_usd": 65.0,
+←   "confidence": 0.99,
+←   "detected_terms": ["nerve block", "bupivacaine"],
+←   "source_consult": {
+←     "external_id": "v-904",
+←     "patient_name": "Bella",
+←     "plan": "…Infraorbital nerve block with bupivacaine 0.5%…"
+←   },
+←   "invoice_lines": [
+←     { "item_code": "EXAM-01", "description": "Comprehensive Exam", "total_usd": 75.0 },
+←     { "item_code": "DENT-SCALE", "description": "Dental Scaling & Polish", "total_usd": 240.0 },
+←     { "item_code": "SURG-EXTR", "description": "Tooth Extraction Simple", "total_usd": 115.0 }
+←   ]
+← }`,
+  },
+  {
+    short: "Bill & Clear",
+    title: "Charge billed in Cornerstone; flag clears automatically",
+    who: "Receptionist in Cornerstone, followed by next auto-poll.",
+    dir: "toClinic",
+    wire: "GET /api/v1/invoicelines?visitId=v-904",
+    clinic: [["Reception adds Nerve Block & Convenia to Cornerstone invoice", "good"]],
+    vg: [["Next sync pulls updated invoice lines", "hot"], ["Flags cleared automatically; leakage $0!", "good"]],
+    body: `<p>Reception adds the missing <b>Local Nerve Block ($65)</b> and <b>Convenia Injection ($95)</b> to Bella's invoice in Cornerstone.</p>
+      <ul>
+        <li>On the next 5-minute auto-pull (or instant "Sync now"), VetGuard re-reads the invoice.</li>
+        <li>The reconciliation engine matches the newly billed line items against the clinical events.</li>
+        <li>The discrepancy flags resolve automatically, and the clinic recovers <b>$160.00</b> in revenue!</li>
+      </ul>`,
+    shot: "appointments",
+    caption: "Appointments view: Bella's consult status turns green ('Audited') with 0 remaining flaws.",
+    code: `GET /api/v1/invoicelines?visitId=v-904
+← 200 OK
+← {
+←   "items": [
+←     { "line_id": "l-1", "item_code": "EXAM-01", "description": "Comprehensive Exam", "extended_price": 75.0 },
+←     { "line_id": "l-2", "item_code": "DENT-SCALE", "description": "Dental Scaling & Polish", "extended_price": 240.0 },
+←     { "line_id": "l-3", "item_code": "SURG-EXTR", "description": "Tooth Extraction Simple", "extended_price": 115.0 },
+←     { "line_id": "l-4", "item_code": "ANES-BLK", "description": "Local Nerve Block Dental", "extended_price": 65.0 },
+←     { "line_id": "l-5", "item_code": "MED-CONV", "description": "Convenia Injection 80mg/ml", "extended_price": 95.0 }
+←   ]
+← }
+
+# Worker re-audit result:
+Content hash changed. Re-audited Bella (v-904).
+All clinical events now matched to invoice items.
+Flags resolved: 2. Remaining leakage: $0.00.`,
+  },
+  {
+    short: "Safety net",
+    title: "Built-in resilience and zero data loss",
+    who: "Automatic system health & error recovery.",
+    dir: "both",
+    wire: "10-min overlap · transaction isolation · retry backoff",
+    clinic: [["Cornerstone Hub maintenance or network latency"]],
+    vg: [["Exponential backoff on 429/502", "hot"], ["Per-consult transaction isolation", "good"]],
+    body: `<ul>
+        <li><b>Clock-skew overlap:</b> Every poll syncs from <code>last_synced_at − 10 minutes</code> to guarantee no visits are missed due to server clock differences.</li>
+        <li><b>Transaction isolation:</b> Each visit is stored and reconciled in its own independent database transaction. If one malformed record fails, the rest proceed smoothly.</li>
+        <li><b>Read-only safety:</b> VetGuard never writes or alters medical records in Cornerstone.</li>
+        <li><b>Rate limit resilience:</b> Paced pagination caps requests at 100 records per page with exponential backoff on HTTP 429 or network errors.</li>
+        <li><b>Live Diagnostics:</b> Admins can test API health anytime from Settings, measuring live round-trip latency.</li>
+      </ul>`,
+    shot: "settings",
+    caption: "Connection Diagnostics card showing active status, round-trip latency, and zero error state.",
+    code: `# Scheduled Polling Logic (pms_sync.py)
+started = datetime.now(timezone.utc)
+last = connection.last_synced_at
+since = (last - timedelta(minutes=10)) if last else started - timedelta(days=30)
+
+# Per-visit transaction isolation:
+for visit in visits:
+    try:
+        async with session_maker() as session:
+            await store_consult(session, clinic_id, consult)
+            await session.commit()
+    except Exception as exc:
+        logger.error(f"Failed visit {visit.id}: {exc}")
+        # Next visit continues uninterrupted
+
+POST /api/v1/integrations/cornerstone/test
+← 200 OK  { "status": "active", "latency_ms": 42 }`,
+  },
+];
+
+const $ = (id) => document.getElementById(id);
+let step = 0;
+let tab = "screen";
+
+function readHash() {
+  const m = /^#s(\d)$/.exec(location.hash);
+  return m ? Math.min(STEPS.length - 1, Math.max(0, Number(m[1]) - 1)) : 0;
+}
+
+function renderState(el, items) {
+  el.replaceChildren(...items.map(([text, kind]) => {
+    const d = document.createElement("div");
+    d.textContent = text;
+    if (kind) d.className = kind;
+    return d;
+  }));
+}
+
+function renderCode(text) {
+  const pre = $("code");
+  pre.replaceChildren(...text.split("\n").flatMap((line, i) => {
+    const span = document.createElement("span");
+    span.textContent = line;
+    if (line.startsWith("←")) span.className = "resp";
+    else if (line.trimStart().startsWith("#")) span.className = "note";
+    else if (line.includes("NOT ON INVOICE") || line.includes("MISSING")) span.className = "highlight";
+    return i ? [document.createTextNode("\n"), span] : [span];
+  }));
+}
+
+function setTab(next) {
+  tab = next;
+  for (const [name, t, p] of [["screen", $("tab-screen"), $("panel-screen")], ["wire", $("tab-wire"), $("panel-wire")]]) {
+    t.setAttribute("aria-selected", String(name === tab));
+    t.tabIndex = name === tab ? 0 : -1;
+    p.hidden = name !== tab;
+  }
+}
+
+function render() {
+  const s = STEPS[step];
+  $("step-num").textContent = `Step ${step + 1} of ${STEPS.length}`;
+  $("step-title").textContent = s.title;
+  $("step-who").textContent = s.who;
+  $("step-body").innerHTML = s.body;
+  renderState($("clinic-state"), s.clinic);
+  renderState($("vg-state"), s.vg);
+  const wire = $("wire");
+  wire.dataset.dir = s.dir;
+  const arrow = s.dir === "toVG" ? "→" : s.dir === "toClinic" ? "←" : s.dir === "both" ? "⇄" : "·";
+  $("wire-msg").innerHTML = `<span class="arrow" aria-hidden="true">${arrow}</span>`;
+  $("wire-msg").append(document.createTextNode(s.wire));
+  $("shot-wrap").innerHTML = SHOT_SVGS[s.shot];
+  $("shot-caption").textContent = s.caption;
+  renderCode(s.code);
+  [...$("rail").querySelectorAll("button")].forEach((b, i) => {
+    b.classList.toggle("done", i < step);
+    if (i === step) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
+  });
+  $("prev").disabled = step === 0;
+  $("next").disabled = step === STEPS.length - 1;
+  history.replaceState(null, "", `#s${step + 1}`);
+}
+
+function go(i) { step = Math.min(STEPS.length - 1, Math.max(0, i)); render(); }
+
+$("rail").replaceChildren(...STEPS.map((s, i) => {
+  const li = document.createElement("li");
+  const b = document.createElement("button");
+  b.type = "button";
+  b.innerHTML = `<b>${String(i + 1).padStart(2, "0")}</b><span></span>`;
+  b.querySelector("span").textContent = s.short;
+  b.addEventListener("click", () => go(i));
+  li.append(b);
+  return li;
+}));
+$("prev").addEventListener("click", () => go(step - 1));
+$("next").addEventListener("click", () => go(step + 1));
+$("tab-screen").addEventListener("click", () => setTab("screen"));
+$("tab-wire").addEventListener("click", () => setTab("wire"));
+document.querySelector(".tabs").addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+    e.preventDefault(); e.stopPropagation();
+    setTab(tab === "screen" ? "wire" : "screen");
+    $(tab === "screen" ? "tab-screen" : "tab-wire").focus();
+  }
+});
+document.addEventListener("keydown", (e) => {
+  if (e.target.closest("input, textarea, select, [role=tablist]") || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === "ArrowRight") go(step + 1);
+  if (e.key === "ArrowLeft") go(step - 1);
+});
+step = readHash();
+setTab("screen");
+render();
+</script>
+
+</body>
+</html>
