@@ -11,6 +11,241 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: 'vetguard-vs-veterinary-pims-charge-capture',
+    title: 'VetGuard.io vs. Veterinary PIMS Charge Capture: What\'s the Difference?',
+    excerpt: 'Compare VetGuard.io with veterinary PIMS charge capture tools. Learn how automated billing audits can help identify missed charges and improve revenue recovery.',
+    category: 'Billing guides',
+    date: 'Oct 14, 2026',
+    readTime: '12 min read',
+    content: [],
+    body: `## Introduction: Is Your Veterinary PIMS Capturing Every Charge?
+
+Veterinary practices depend on their practice information management systems (PIMS) to coordinate patient records, appointments, treatments, inventory, invoices, and payments. Many modern systems also offer charge-capture capabilities designed to connect clinical care with billing.
+
+Does your PIMS help your team enter the right charges, or does it also independently check whether the services documented in the medical record actually made it onto the invoice? These are related but different functions.
+
+A well-configured veterinary PIMS can reduce missed charges by linking treatments, diagnostics, medications, and procedures to billing workflows. The effectiveness of these features depends on the system, its configuration, how staff use it, and whether documented care is consistently connected to invoice items.
+
+VetGuard.io approaches the problem from another direction. It is designed to compare veterinary SOAP notes with invoice line items and flag potential discrepancies for staff review. Rather than replacing a PIMS, it focuses on identifying possible billing gaps that may remain after normal clinical and administrative workflows.
+
+## What Is Veterinary PIMS Charge Capture?
+
+A veterinary PIMS is operational software many clinics use to manage patient information, appointments, clinical documentation, estimates, invoices, payments, and other workflows. Charge capture is the process of ensuring that services, procedures, medications, diagnostics, and other billable items are recorded and included in the appropriate invoice.
+
+Depending on the PIMS, charge-capture capabilities may include:
+- Linking treatments to invoice items
+- Adding charges when medications or procedures are recorded
+- Connecting diagnostic orders to billing
+- Building estimates that flow into treatment plans and invoices
+- Using standardized service catalogs
+- Applying configured billing triggers
+- Helping staff reconcile estimates, completed treatments, and final invoices
+
+For example, Shepherd describes a workflow in which administered treatments are added to invoices. ezyVet promotes automated billing triggers that connect notes, treatments, and diagnostics with charges. These features can reduce manual work, but capabilities vary by platform and configuration. Some items may still depend on staff entry or verification.
+
+## What Is VetGuard.io?
+
+VetGuard.io is a veterinary billing audit and revenue-recovery tool designed to identify potential differences between what clinical documentation describes and what appears on an invoice.
+
+The workflow is straightforward:
+
+1. **Analyze the medical record.** Review the veterinary SOAP note and related clinical documentation.
+2. **Compare documentation with billing.** Identify services or items that appear documented but may not have a corresponding invoice charge.
+3. **Present potential discrepancies for review.** Allow the practice team to determine whether a finding represents a legitimate missed charge or requires no action.
+
+VetGuard.io's website describes support for ezyVet, Cornerstone, and a manual copy-and-paste workflow. Its published product information also describes confidence scoring to help staff prioritize flagged findings.
+
+**Important:** A finding is not automatically proof that a charge is owed. Clinical notes may describe a recommendation, a declined treatment, a bundled service, or an action that does not have a separate billable fee. Human review is important before any billing correction is made.
+
+## The Key Difference: Prevention vs. Detection
+
+The simplest way to understand the difference is to consider the primary job each tool performs:
+
+| Capability | Veterinary PIMS charge capture | VetGuard.io billing audit |
+| :--- | :--- | :--- |
+| **Primary purpose** | Capture charges during clinical and billing workflows | Identify potential gaps between clinical documentation and invoice items |
+| **Clinical workflow** | Manages patient records, treatments, and workflows | Analyzes existing documentation and billing information |
+| **Charge entry** | May create or link charges, depending on configuration | Flags potential missing charges for review |
+| **Documentation comparison** | Varies by PIMS and configuration | A core part of the intended workflow |
+| **Billing rules** | Uses configured catalogs, triggers, and workflows | Uses documentation analysis to surface potential discrepancies |
+| **Human involvement** | Depends on workflow and system | Staff review findings before action |
+| **Main value** | Prevent omissions at point of care | Help detect omissions that escaped normal workflow |
+| **Best role** | Core practice operations and charge entry | Additional billing oversight and revenue-leakage detection |
+
+**PIMS charge capture** is primarily part of the process of recording and billing care. **VetGuard.io** is designed to provide an additional check for potential gaps between documented care and billed items.
+
+## Why Can Missed Charges Occur Even With a Modern PIMS?
+
+Even with modern PIMS systems in place, missed charges still happen:
+
+1. **A Service Is Documented but Not Entered as a Charge** — A technician may document a procedure without completing the corresponding billing step, particularly when clinical work moves quickly.
+2. **A Billing Trigger Is Not Configured** — Automated charge capture depends on rules, mappings, and workflows. If an item is not mapped correctly, the expected charge may not be generated.
+3. **A Workflow Requires Manual Entry** — Some services may require staff to select a billing code, enter a quantity, or add an invoice line. Each additional step creates an opportunity for oversight.
+4. **Clinical Narrative Differs from Structured Billing Data** — A SOAP note may describe care in free text, while the invoice relies on structured line items. A billing audit can help surface discrepancies between them.
+5. **Estimates and Final Invoices Differ** — Services may be declined, modified, or not performed, while other services may be added during the visit. The final invoice should reflect what actually happened.
+6. **Staff Habits Vary** — Different doctors, technicians, and locations may have different documentation and charge-entry habits. Configuration, training, adoption, and oversight all matter.
+
+## A Practical Example: A Missed Diagnostic Charge
+
+Imagine a dog visits a clinic for a skin problem. The veterinarian documents an examination, a skin sample collection, and a diagnostic test in the SOAP note. The invoice contains the examination fee and prescribed medication, but the diagnostic test does not appear as a separate line item.
+
+Possible explanations include:
+- The test was performed but the charge was omitted
+- The test was included in a legitimate bundle
+- Documentation is incomplete or ambiguous
+- The service was discussed but never performed
+- The practice uses a billing configuration that handles the item differently
+
+A PIMS with correctly configured charge-capture rules may prevent the omission. If a discrepancy remains, a documentation-to-invoice audit can flag it for investigation. The practice team can verify what happened and decide whether a correction is appropriate. This avoids both missing legitimate revenue and adding unjustified charges.
+
+## Where Veterinary PIMS Charge Capture Has an Advantage
+
+- **Integrated workflows.** The PIMS manages the operational record, including patient history, treatments, estimates, invoices, and payments. Integrated charge capture can reduce duplicate entry and make it easier to record billable items as care is delivered.
+- **Configurable billing rules.** Depending on the platform, the PIMS may support treatment mappings, service catalogs, billing triggers, bundles, and other rules. Proper configuration can prevent common omissions before the invoice is finalized.
+- **Immediate charge entry.** If a completed treatment triggers a charge automatically, staff may not need to remember to enter it separately. This is useful for standardized services that can be reliably mapped.
+- **One operational system.** Staff can work in established clinical and financial workflows.
+
+**Note:** Practices should not treat billing audits as a substitute for configuring and using their PIMS effectively.
+
+## Where VetGuard.io's Approach Can Add Value
+
+1. Reviewing free-text documentation: Clinical records contain narrative information, abbreviations, and descriptions of care. Comparing this information with invoice items can help identify potential omissions that are not obvious from a list of existing charges alone.
+2. Adding an audit layer: A clinic can retain its existing PIMS while adding a process intended to identify potential billing discrepancies. Actual benefit depends on integration capabilities, available data, and how findings are handled.
+3. Reducing manual chart-by-chart comparisons: Automation can perform initial comparisons across more records, allowing staff to focus on flagged cases. Time savings should be measured in the clinic's own workflow.
+4. Supporting consistent review: A standardized process may help identify recurring issues across doctors, shifts, and locations.
+5. Measuring revenue leakage: Measure how many findings are legitimate and how much money is actually recovered—not just the raw number of alerts.
+
+## Can VetGuard.io Replace PIMS Charge Capture?
+
+In most cases, this is the wrong question.
+
+A PIMS performs broad operational functions, including maintaining patient records, managing appointments, supporting clinical workflows, and processing billing. VetGuard.io's stated focus is narrower: comparing SOAP notes with invoices to identify potential missed charges.
+
+A specialized auditing tool should not be treated as a replacement for the core system. Nor should a practice assume that a PIMS cannot perform meaningful charge auditing; some platforms provide automation, reconciliation, reporting, and workflow controls.
+
+**The key question:** If the PIMS captures charges reliably and provides adequate reconciliation, a separate tool may add limited incremental value. If meaningful discrepancies persist despite good workflows, an additional audit layer may be worth evaluating.
+
+## What About ezyVet, Cornerstone, and Other Veterinary PIMS?
+
+### ezyVet
+ezyVet promotes automated billing triggers that connect clinical notes, treatments, and diagnostics with charges. VetGuard.io lists ezyVet support and describes comparing consult documentation with invoice line items.
+
+For an ezyVet practice, evaluate whether the audit identifies legitimate discrepancies that remain after charge-capture workflows are configured and adopted.
+
+### Cornerstone
+VetGuard.io lists Cornerstone support and describes a manual paste workflow. A Cornerstone practice should evaluate its specific charge-capture and reporting capabilities, then test whether VetGuard.io identifies additional valid omissions. Confirm integration details, permissions, and setup requirements with the vendors.
+
+### Shepherd
+Shepherd describes charge capture as part of its integrated workflow, including adding administered treatments to invoices. For practices using Shepherd, evaluate whether an additional audit layer provides measurable benefits beyond the platform's existing automation.
+
+**Important:** These examples illustrate product positioning, not a verified head-to-head performance ranking. Evaluate systems using comparable records, the same billing rules, and agreed measures of accuracy and staff effort.
+
+## The Economics: Is an Additional Audit Tool Worth It?
+
+The business case should be based on incremental value, not the assumption that every clinic has the same level of revenue leakage.
+
+Measure:
+- How much potential missed revenue the current workflow leaves undetected
+- What proportion of findings are legitimate
+- How much is actually recovered or corrected
+- How much staff time is required
+
+**Net monthly benefit = verified incremental revenue recovered − software cost − additional labor cost**
+
+For example, suppose a clinic pays $200 per month for an audit tool. During a controlled evaluation, it confirms $1,500 in legitimate, previously unbilled charges that otherwise would have been missed. If additional review and correction work costs $250, the illustrative net benefit is $1,050 for that period.
+
+**Important:** This example is hypothetical, not a forecast or claim about typical results. A flagged charge is not the same as recovered revenue. Some findings will be false positives, some items may be bundled or non-billable, and some corrections may not result in collected revenue.
+
+VetGuard.io's website has published Starter and Professional plans at $200 and $500 per month, respectively, with stated audit volumes and a trial offer. Confirm current pricing and terms directly with the company.
+
+## How to Test VetGuard.io Against Your Existing PIMS
+
+1. **Establish a Baseline** — Select representative completed encounters across doctors, appointment types, diagnostics, treatments, and medication workflows. Avoid selecting only records likely to produce a positive result.
+2. **Review Existing Capture** — Document charge-capture rules, automatic triggers, billing reports, and reconciliation workflows. Make sure the PIMS is configured correctly.
+3. **Run the Audit** — Compare the same clinical documentation and invoices. Do not treat proposed, declined, bundled, or unperformed services as automatically billable.
+4. **Verify Every Finding** — Have trained staff determine whether each finding is a genuine omission, legitimate billing configuration, ambiguous record, or false positive. Record why it was accepted or rejected.
+5. **Calculate Incremental Value** — Track encounters reviewed, discrepancies identified, confirmed missed charges, false-positive rate, legitimate dollars identified, amount actually recovered, review time, and net benefit after costs.
+6. **Improve the Workflow** — Use findings to correct configuration or training issues inside the PIMS and reduce recurring omissions.
+
+## Questions to Ask Before Buying
+
+### About Charge Capture
+- Which actions automatically generate charges? Which require manual entry?
+- How are treatments, diagnostics, medications, bundles, declined services, and cancellations handled?
+- What reports identify differences between documented care and billed services?
+
+### About Auditing
+- Does the tool compare free-text SOAP notes with invoice items?
+- How does it distinguish performed care from recommendations?
+- Can staff see why a discrepancy was flagged?
+- How are false positives measured?
+- Can the practice track accepted findings and actual recovered revenue?
+
+### About Integration and Security
+- Which PIMS versions and workflows are supported?
+- What permissions and clinical data are required?
+- Does the tool write to the PIMS or only flag findings?
+- How are data retention, access controls, and deletion handled?
+- What security documentation is available?
+
+### About Business Results
+- What measurable improvement does the tool provide beyond the existing PIMS?
+- How much review time is required per finding?
+- What results can the vendor substantiate with comparable clinic data?
+- Can the practice run a representative trial?
+
+## The Best Strategy May Be PIMS + VetGuard.io
+
+For some practices, the strongest approach is to combine prevention with detection:
+
+1. Document care: The veterinary team records treatments, diagnostics, medications, and other services in the PIMS.
+2. Capture charges: Configured PIMS workflows add appropriate invoice items.
+3. Audit discrepancies: VetGuard.io compares the SOAP note with invoice line items and flags potential gaps.
+4. Verify findings: Staff review the clinical context and billing rules.
+5. Correct legitimate omissions: Authorized staff make appropriate billing corrections.
+6. Improve the process: Managers look for patterns and update training, configuration, or workflows.
+
+**No software should be assumed to eliminate every billing error.** Prevention, auditing, human judgment, and continuous improvement can reinforce one another.
+
+## Frequently Asked Questions
+
+**Is VetGuard.io a veterinary PIMS?**
+No. VetGuard.io is positioned as a specialized veterinary billing audit and revenue-recovery tool, not a full practice management system.
+
+**Does PIMS charge capture prevent all missed charges?**
+No system should be assumed to eliminate every omission. Results depend on capabilities, configuration, documentation, and staff workflows.
+
+**If my PIMS already has automatic charge capture, do I need VetGuard.io?**
+Not necessarily. First determine whether your current workflow leaves meaningful, recurring gaps. An extra audit layer may be worthwhile if a controlled test demonstrates additional legitimate missed charges that justify the cost and review effort.
+
+**Does VetGuard.io automatically add every flagged charge to an invoice?**
+A potential discrepancy is not automatic authorization to bill. VetGuard.io describes flagging potential missed charges for staff review. Confirm current integration behavior and permissions with VetGuard.io.
+
+**Is an automated audit better than manual auditing?**
+Automation can make high-volume screening more practical, while manual review remains important for context, unusual cases, and quality assurance.
+
+**How should a practice measure success?**
+Measure legitimate findings, accepted findings, actual revenue recovered, false positives, review time, and net financial benefit.
+
+**Can VetGuard.io work with different PIMS platforms?**
+VetGuard.io lists ezyVet and Cornerstone support and describes a manual paste workflow. Confirm compatibility and required steps for other systems directly with the company.
+
+## Conclusion: Charge Capture Is the First Layer, Auditing Is the Safety Net
+
+Veterinary PIMS charge-capture features and specialized billing audit software address the same broad objective: helping practices ensure that invoices accurately reflect the care delivered.
+
+PIMS charge capture helps connect clinical activity with billing as part of the everyday workflow. VetGuard.io focuses on comparing documented clinical care with invoice line items to identify potential omissions for review.
+
+For practices with reliable charge-capture workflows and little remaining leakage, an additional audit tool may offer limited incremental value. For practices that continue to discover legitimate omissions, a structured audit may provide a useful additional layer of oversight.
+
+**The key question is not whether your PIMS has charge capture. It is whether your current process reliably captures the care your team delivers—and whether an additional audit can measurably improve that result.**
+
+VetGuard.io's value proposition is to help veterinary practices look for billing gaps that may remain after their normal workflows have done their job. The strongest way to validate that value is to test it, verify the findings, measure recovered revenue, and compare results with cost and effort.
+
+Ready to see whether your current billing workflow is leaving potential revenue unaccounted for? [Visit VetGuard.io](http://vetguard.io) to learn about its veterinary billing audit workflow and request a product demonstration.
+`,
+  },
+  {
     slug: 'vetguard-vs-manual-billing-audits',
     title: 'VetGuard.io vs. Manual Billing Audits: Which Is Better for Veterinary Practices?',
     excerpt:
