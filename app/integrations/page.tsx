@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'Integrations — ezyVet & Cornerstone | VetGuard.io',
   description:
     'Choose your practice management system. VetGuard integrates with ezyVet and IDEXX Cornerstone to automatically audit SOAP notes against invoices.',
+  alternates: {
+    canonical: 'https://vetguard.io/integrations',
+  },
 }
 
 const integrations = [

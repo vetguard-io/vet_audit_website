@@ -6,6 +6,9 @@ import PricingPreview from '@/components/PricingPreview'
 export const metadata: Metadata = {
   title: 'Pricing — VetGuard.io',
   description: 'Simple, transparent pricing for veterinary billing audits. Start with a free 2-week trial.',
+  alternates: {
+    canonical: 'https://vetguard.io/pricing',
+  },
 }
 
 const faqs = [

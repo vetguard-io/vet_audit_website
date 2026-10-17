@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     'Explore how VetGuard integrates with ezyVet to automatically audit consult SOAP notes against invoices in seconds. Recover missed charges with zero double-entry.',
   keywords:
     'ezyvet integration, veterinary billing audit, ezyvet missed charges, veterinary practice management, ezyvet api, soap note audit',
+  alternates: {
+    canonical: 'https://vetguard.io/integrations/ezyvet',
+  },
 }
 
 export default function EzyVetIntegrationPage() {

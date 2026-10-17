@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Privacy Policy — VetGuard.io',
   description:
     'How VetGuard LLC collects, uses, stores, shares, and protects information when you use VetGuard.io.',
+  alternates: {
+    canonical: 'https://vetguard.io/privacy',
+  },
 }
 
 export default function PrivacyPolicyPage() {

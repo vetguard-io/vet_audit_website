@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     'Explore how VetGuard integrates with IDEXX Cornerstone to auto-pull SOAP notes and invoices every 5 minutes and flag unbilled procedures. Recover missed charges with zero double-entry.',
   keywords:
     'cornerstone integration, idexx cornerstone, veterinary billing audit, cornerstone missed charges, veterinary practice management, soap note audit',
+  alternates: {
+    canonical: 'https://vetguard.io/integrations/cornerstone',
+  },
 }
 
 export default function CornerstoneIntegrationPage() {

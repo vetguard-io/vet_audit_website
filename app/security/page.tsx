@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Security Policy — VetGuard.io',
   description:
     'Administrative, technical, and physical safeguards VetGuard uses to protect clinical and financial data.',
+  alternates: {
+    canonical: 'https://vetguard.io/security',
+  },
 }
 
 export default function SecurityPolicyPage() {

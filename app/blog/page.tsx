@@ -6,6 +6,9 @@ import { blogPosts } from '@/lib/blog-posts'
 export const metadata: Metadata = {
   title: 'Blog — VetGuard.io',
   description: 'Tips, guides, and insights on veterinary billing audits and revenue recovery.',
+  alternates: {
+    canonical: 'https://vetguard.io/blog',
+  },
 }
 
 export default function BlogPage() {

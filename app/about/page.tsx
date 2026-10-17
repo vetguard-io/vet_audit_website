@@ -5,6 +5,9 @@ import { ArrowRight, Heart, Shield, Target, Users } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'About — VetGuard.io',
   description: 'VetGuard.io helps veterinary clinics recover missed revenue with AI-powered billing audits.',
+  alternates: {
+    canonical: 'https://vetguard.io/about',
+  },
 }
 
 const values = [

@@ -44,7 +44,7 @@ const nextConfig = {
       {
         source: '/app',
         destination: 'https://app.vetguard.io',
-        permanent: false,
+        permanent: true,
       },
     ]
   },

@@ -21,6 +21,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${post.title} — VetGuard.io Blog`,
     description: post.excerpt,
+    alternates: {
+      canonical: `https://vetguard.io/blog/${slug}`,
+    },
   }
 }
 

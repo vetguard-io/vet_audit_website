@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'VetGuard.io' }],
   creator: 'VetGuard.io',
   publisher: 'VetGuard.io',
+  alternates: {
+    canonical: 'https://vetguard.io',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',

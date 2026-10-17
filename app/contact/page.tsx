@@ -5,6 +5,9 @@ import ContactForm from '@/components/ContactForm'
 export const metadata: Metadata = {
   title: 'Contact — VetGuard.io',
   description: 'Schedule a demo or get in touch with the VetGuard.io team.',
+  alternates: {
+    canonical: 'https://vetguard.io/contact',
+  },
 }
 
 const contactInfo = [
