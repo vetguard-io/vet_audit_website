@@ -81,34 +81,34 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What is VetGuard and why does it matter?',
+      name: 'What is VetGuard.io and why does it matter?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'VetGuard is an AI-powered billing audit platform for veterinary clinics. Vet clinics lose an estimated 10–15% of revenue from unbilled services and procedures. VetGuard reads your clinical SOAP notes, understands vet-specific terminology and abbreviations, and automatically flags missing line items on patient invoices.',
+        text: 'VetGuard.io is an AI-powered billing audit platform for veterinary clinics. Vet clinics lose an estimated 10–15% of revenue from unbilled services and procedures. VetGuard.io reads your clinical SOAP notes, understands vet-specific terminology and abbreviations, and automatically flags missing line items on patient invoices.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How does VetGuard audit veterinary records?',
+      name: 'How does VetGuard.io audit veterinary records?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'VetGuard works in three simple steps: 1) Auto-pull or paste SOAP notes and invoice line items from your PIMS, 2) AI audits the notes against charged items with confidence scoring (high, medium, low), and 3) Staff reviews flagged charges and adds them to client invoices in under 60 seconds.',
+        text: 'VetGuard.io works in three simple steps: 1) Auto-pull or paste SOAP notes and invoice line items from your PIMS, 2) AI audits the notes against charged items with confidence scoring (high, medium, low), and 3) Staff reviews flagged charges and adds them to client invoices in under 60 seconds.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Which Practice Management Information Systems (PIMS) does VetGuard integrate with?',
+      name: 'Which Practice Management Information Systems (PIMS) does VetGuard.io integrate with?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'VetGuard features direct integrations with ezyVet and IDEXX Cornerstone, along with manual paste support that works with any veterinary practice management software.',
+        text: 'VetGuard.io features direct integrations with ezyVet and IDEXX Cornerstone, along with manual paste support that works with any veterinary practice management software.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How much does VetGuard cost?',
+      name: 'How much does VetGuard.io cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'VetGuard offers a 2-week free trial with full functionality and no credit card required. Paid plans start at $200/month for Starter (1–3 clinics, ~2,000 audits/month) and $500/month for Professional (3–10 clinics, ~5,000 audits/month).',
+        text: 'VetGuard.io offers a 2-week free trial with full functionality and no credit card required. Paid plans start at $200/month for Starter (1–3 clinics, ~2,000 audits/month) and $500/month for Professional (3–10 clinics, ~5,000 audits/month).',
       },
     },
   ],
