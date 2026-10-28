@@ -1,5 +1,24 @@
-User-agent: *
+User-Agent: *
 Allow: /
 Disallow: /api/
 
 Sitemap: https://vetguard.io/sitemap.xml
+
+# --- SitePulse: allow AI search / citation crawlers ---
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# --- AI training crawlers: opted OUT (switch to Allow to opt in) ---
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /

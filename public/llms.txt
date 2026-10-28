@@ -1,0 +1,29 @@
+# VetGuard.io — AI Billing Audit for Vet Clinics
+
+> Official site of VetGuard.io — AI Billing Audit for Vet Clinics. Key pages for AI assistants and search engines are listed below.
+
+## Pages
+- [VetGuard.io — AI Billing Audit for Vet Clinics](https://vetguard.io/)
+- [Integrations — ezyVet & Cornerstone | VetGuard.io](https://vetguard.io/integrations)
+- [Pricing — VetGuard.io](https://vetguard.io/pricing)
+- [About — VetGuard.io](https://vetguard.io/about)
+- [Blog — VetGuard.io](https://vetguard.io/blog)
+- [Contact — VetGuard.io](https://vetguard.io/contact)
+- [ezyVet Integration Tour — Automated Billing Audit | VetGuard.io](https://vetguard.io/integrations/ezyvet)
+- [Cornerstone Integration Tour — Automated Billing Audit | VetGuard.io](https://vetguard.io/integrations/cornerstone)
+- [Privacy Policy — VetGuard.io](https://vetguard.io/privacy)
+- [Terms of Service — VetGuard.io](https://vetguard.io/terms)
+- [Security Policy — VetGuard.io](https://vetguard.io/security)
+- [VetGuard.io vs. Veterinary PIMS Charge Capture: What's the Difference? — VetGuard.io Blog](https://vetguard.io/blog/vetguard-vs-veterinary-pims-charge-capture)
+- [VetGuard.io vs. Manual Billing Audits: Which Is Better for Veterinary Practices? — VetGuard.io Blog](https://vetguard.io/blog/vetguard-vs-manual-billing-audits)
+- [The hidden cost of missed charges in vet clinics — VetGuard.io Blog](https://vetguard.io/blog/hidden-cost-of-missed-charges)
+- [The SOAP note audit checklist every billing manager needs — VetGuard.io Blog](https://vetguard.io/blog/soap-note-audit-checklist)
+- [How to streamline billing audits with ezyVet — VetGuard.io Blog](https://vetguard.io/blog/ezyvet-billing-integration)
+- [Calculating the ROI of billing audit software — VetGuard.io Blog](https://vetguard.io/blog/roi-of-billing-audit-software)
+- [7 services vet clinics forget to bill for — VetGuard.io Blog](https://vetguard.io/blog/common-unbilled-services)
+- [How AI is changing veterinary billing audits — VetGuard.io Blog](https://vetguard.io/blog/ai-in-veterinary-billing)
+- [ezyVet Integration Tour](https://vetguard.io/demos/ezyvet-tour.html)
+- [Cornerstone (IDEXX) Integration Tour](https://vetguard.io/demos/cornerstone-tour.html)
+
+## Site
+- https://vetguard.io
