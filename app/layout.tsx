@@ -52,6 +52,44 @@ export const metadata: Metadata = {
   },
 }
 
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://vetguard.io/#organization",
+    "name": "VetGuard.io",
+    "legalName": "VetGuard LLC",
+    "url": "https://vetguard.io",
+    "logo": "https://vetguard.io/icon.png",
+    "description": "AI billing audit software for veterinary clinics. VetGuard analyzes clinical SOAP notes to detect unbilled services and recover missed revenue.",
+    "email": "hello@vetguard.io",
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "email": "hello@vetguard.io",
+        "contactType": "customer support"
+      }
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/company/vetguard-io/",
+      "https://www.facebook.com/people/VetGuardio/61592419634363/"
+    ]
+  };
+
+  return (
+    <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
+
+
 const siteStructuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -78,6 +116,43 @@ const siteStructuredData = {
       ],
     },
   ],
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://vetguard.io/#organization",
+    "name": "VetGuard.io",
+    "legalName": "VetGuard LLC",
+    "url": "https://vetguard.io",
+    "logo": "https://vetguard.io/icon.png",
+    "description": "AI billing audit software for veterinary clinics. VetGuard analyzes clinical SOAP notes to detect unbilled services and recover missed revenue.",
+    "email": "hello@vetguard.io",
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "email": "hello@vetguard.io",
+        "contactType": "customer support"
+      }
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/company/vetguard-io/",
+      "https://www.facebook.com/people/VetGuardio/61592419634363/"
+    ]
+  };
+
+  return (
+    <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
 }
 
 export default function RootLayout({
