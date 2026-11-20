@@ -1,0 +1,196 @@
+{
+  "$schema": "https://llmstxt.org/schema/v1/llms.json",
+  "name": "VetGuard.io — AI Billing Audit for Vet Clinics",
+  "description": "Official machine-readable LLM context, capability endpoints, and retrieval feed for VetGuard.io — AI Billing Audit for Vet Clinics.",
+  "canonicalUrl": "https://vetguard.io",
+  "entities": {
+    "brand": "VetGuard.io — AI Billing Audit for Vet Clinics",
+    "category": "Software & Technology",
+    "capabilities": [
+      "The problem",
+      "How VetGuard.io works",
+      "Built for vet practices",
+      "Simple, transparent pricing",
+      "Frequently Asked Questions",
+      "Ready to recover lost revenue?"
+    ],
+    "sameAs": [
+      "https://www.wikidata.org/wiki/Special:Search?search=VetGuard.io%20%E2%80%94%20AI%20Billing%20Audit%20for%20Vet%20Clinics",
+      "https://www.crunchbase.com/organization/vetguard-io-ai-billing-audit-for-vet-clinics",
+      "https://www.linkedin.com/company/vetguard-io-ai-billing-audit-for-vet-clinics",
+      "https://github.com/vetguard-io-ai-billing-audit-for-vet-clinics"
+    ]
+  },
+  "knowledgeBase": {
+    "keyQuestions": [
+      {
+        "query": "what is vetguard and why does it matter",
+        "funnel": "awareness",
+        "intent": "Problem-first education"
+      },
+      {
+        "query": "how to solve data problems",
+        "funnel": "awareness",
+        "intent": "Problem-first education"
+      },
+      {
+        "query": "common vetguard mistakes to avoid",
+        "funnel": "awareness",
+        "intent": "Problem-first education"
+      },
+      {
+        "query": "VetGuard.io — AI Billing Audit for Vet Clinics vs alternatives",
+        "funnel": "consideration",
+        "intent": "Comparative"
+      },
+      {
+        "query": "best vetguard tools 2026",
+        "funnel": "consideration",
+        "intent": "Listicle placement"
+      },
+      {
+        "query": "VetGuard.io — AI Billing Audit for Vet Clinics features and use cases",
+        "funnel": "consideration",
+        "intent": "Evaluation"
+      },
+      {
+        "query": "vetguard comparison for small teams",
+        "funnel": "consideration",
+        "intent": "Comparative"
+      },
+      {
+        "query": "VetGuard.io — AI Billing Audit for Vet Clinics pricing",
+        "funnel": "decision",
+        "intent": "Transactional"
+      },
+      {
+        "query": "VetGuard.io — AI Billing Audit for Vet Clinics reviews",
+        "funnel": "decision",
+        "intent": "Social proof"
+      },
+      {
+        "query": "VetGuard.io — AI Billing Audit for Vet Clinics free trial",
+        "funnel": "decision",
+        "intent": "Transactional"
+      }
+    ],
+    "pages": [
+      {
+        "title": "VetGuard.io — AI Billing Audit for Vet Clinics",
+        "url": "https://vetguard.io/",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "Integrations — ezyVet & Cornerstone | VetGuard.io",
+        "url": "https://vetguard.io/integrations",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "Pricing — VetGuard.io",
+        "url": "https://vetguard.io/pricing",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "About — VetGuard.io",
+        "url": "https://vetguard.io/about",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "Blog — VetGuard.io",
+        "url": "https://vetguard.io/blog",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "Contact — VetGuard.io",
+        "url": "https://vetguard.io/contact",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "ezyVet Integration Tour — Automated Billing Audit | VetGuard.io",
+        "url": "https://vetguard.io/integrations/ezyvet",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "Cornerstone Integration Tour — Automated Billing Audit | VetGuard.io",
+        "url": "https://vetguard.io/integrations/cornerstone",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "Privacy Policy — VetGuard.io",
+        "url": "https://vetguard.io/privacy",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "Terms of Service — VetGuard.io",
+        "url": "https://vetguard.io/terms",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "Security Policy — VetGuard.io",
+        "url": "https://vetguard.io/security",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "Veterinary SOAP Notes, Billing and Pet Insurance: Why Medical Records Matter — VetGuard.io Blog",
+        "url": "https://vetguard.io/blog/veterinary-soap-notes-billing-pet-insurance",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "Best Veterinary Revenue Leakage Software: A 2026 Guide to Preventing Missed Charges and Recovering Lost Revenue — VetGuard.io Blog",
+        "url": "https://vetguard.io/blog/best-veterinary-revenue-leakage-software-2026",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "VetGuard.io vs. Veterinary PIMS Charge Capture: What's the Difference? — VetGuard.io Blog",
+        "url": "https://vetguard.io/blog/vetguard-vs-veterinary-pims-charge-capture",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "VetGuard.io vs. Manual Billing Audits: Which Is Better for Veterinary Practices? — VetGuard.io Blog",
+        "url": "https://vetguard.io/blog/vetguard-vs-manual-billing-audits",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "The hidden cost of missed charges in vet clinics — VetGuard.io Blog",
+        "url": "https://vetguard.io/blog/hidden-cost-of-missed-charges",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "The SOAP note audit checklist every billing manager needs — VetGuard.io Blog",
+        "url": "https://vetguard.io/blog/soap-note-audit-checklist",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "How to streamline billing audits with ezyVet — VetGuard.io Blog",
+        "url": "https://vetguard.io/blog/ezyvet-billing-integration",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "Calculating the ROI of billing audit software — VetGuard.io Blog",
+        "url": "https://vetguard.io/blog/roi-of-billing-audit-software",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "7 services vet clinics forget to bill for — VetGuard.io Blog",
+        "url": "https://vetguard.io/blog/common-unbilled-services",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "How AI is changing veterinary billing audits — VetGuard.io Blog",
+        "url": "https://vetguard.io/blog/ai-in-veterinary-billing",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "ezyVet Integration Tour",
+        "url": "https://vetguard.io/demos/ezyvet-tour.html",
+        "purpose": "Primary source documentation and capability overview"
+      },
+      {
+        "title": "Cornerstone (IDEXX) Integration Tour",
+        "url": "https://vetguard.io/demos/cornerstone-tour.html",
+        "purpose": "Primary source documentation and capability overview"
+      }
+    ]
+  },
+  "updatedAt": "2026-11-20T20:01:43.395Z"
+}

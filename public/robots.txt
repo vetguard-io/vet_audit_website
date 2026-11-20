@@ -12,7 +12,13 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: ClaudeBot
+Allow: /
+
 User-agent: Googlebot
+Allow: /
+
+User-agent: Amazonbot
 Allow: /
 
 # --- AI training crawlers: opted OUT (switch to Allow to opt in) ---
@@ -21,4 +27,13 @@ User-agent: GPTBot
 Disallow: /
 
 User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Meta-ExternalAgent
 Disallow: /
