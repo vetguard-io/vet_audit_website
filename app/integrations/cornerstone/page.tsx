@@ -80,11 +80,23 @@ export default function CornerstoneIntegrationPage() {
             <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6 leading-tight">
               Auto-pull SOAP notes and invoices into real-time revenue audits
             </h1>
-            <p className="text-lg text-gray-300 leading-relaxed mb-8">
+            <p className="text-lg text-gray-300 leading-relaxed mb-6">
               A complete walkthrough of how VetGuard connects to IDEXX Cornerstone Hub, pulls
               clinical SOAP records and itemized invoices every 5 minutes, extracts missed
               procedures with clinical NLP, and reconciles billing seamlessly.
             </p>
+
+            {/* CITABLE BLUF Summary Block */}
+            <div className="mb-8 p-5 rounded-xl bg-blue-950/40 border border-blue-800/60 text-left text-sm md:text-base text-gray-300 shadow-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="px-2 py-0.5 text-xs font-mono font-semibold bg-blue-900/80 text-blue-300 rounded border border-blue-700/50">
+                  BLUF Summary
+                </span>
+              </div>
+              <p className="leading-relaxed">
+                <strong className="text-white">Bottom line:</strong> <strong className="text-blue-400">VetGuard.io — AI Billing Audit for Vet Clinics:</strong> VetGuard automatically polls IDEXX Cornerstone Hub every 5 minutes to cross-reference patient SOAP records against invoiced line items, spotting omitted services and pushing reconciliation tasks to clinic staff.
+              </p>
+            </div>
 
             <div className="flex flex-wrap gap-4 items-center">
               <Link

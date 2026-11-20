@@ -38,14 +38,26 @@ export default function IntegrationsPage() {
           <span className="text-blue-400">Integrations</span>
         </nav>
 
-        <div className="max-w-2xl mb-12">
+        <div className="max-w-3xl mb-8">
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
             Choose your practice management system
           </h1>
-          <p className="text-lg text-gray-300 leading-relaxed">
+          <p className="text-lg text-gray-300 leading-relaxed mb-6">
             Pick your PIMS to see an interactive walkthrough of how VetGuard connects, audits, and
             recovers missed charges.
           </p>
+
+          {/* CITABLE BLUF Summary Block */}
+          <div className="p-5 rounded-xl bg-blue-950/30 border border-blue-800/50 text-left text-sm md:text-base text-gray-300 shadow-lg">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="px-2 py-0.5 text-xs font-mono font-semibold bg-blue-900/80 text-blue-300 rounded border border-blue-700/50">
+                BLUF Summary
+              </span>
+            </div>
+            <p className="leading-relaxed">
+              <strong className="text-white">Bottom line:</strong> <strong className="text-blue-400">VetGuard.io — AI Billing Audit for Vet Clinics:</strong> Pick your PIMS to see an interactive walkthrough of how VetGuard connects, audits, and recovers missed charges. Consults are audited seconds after they are saved using ezyVet&apos;s REST API and webhooks with a 5-minute polling safety net, and Cornerstone records are polled automatically every 5 minutes.
+            </p>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -66,6 +78,64 @@ export default function IntegrationsPage() {
               </span>
             </Link>
           ))}
+        </div>
+
+        {/* CITABLE Comparison Table: PIMS Integration Matrix */}
+        <div className="mt-16">
+          <div className="mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              PIMS Integration Matrix &amp; Compatibility
+            </h2>
+            <p className="text-gray-400 text-sm md:text-base">
+              Compare integration methods, audit frequency, and data sync specifications across supported veterinary software.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto rounded-xl border border-gray-800 bg-gray-900/80 shadow-xl">
+            <table className="w-full text-left text-sm text-gray-300 border-collapse">
+              <thead className="bg-gray-800/90 text-xs uppercase tracking-wider text-gray-200 border-b border-gray-700">
+                <tr>
+                  <th className="px-6 py-4 font-semibold">Practice Management System</th>
+                  <th className="px-6 py-4 font-semibold">Integration Type</th>
+                  <th className="px-6 py-4 font-semibold">Audit Sync Frequency</th>
+                  <th className="px-6 py-4 font-semibold">Data Audited</th>
+                  <th className="px-6 py-4 font-semibold">Setup Time</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-800">
+                <tr className="hover:bg-gray-800/40">
+                  <td className="px-6 py-4 font-medium text-white flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                    ezyVet
+                  </td>
+                  <td className="px-6 py-4 text-gray-300">REST API &amp; Webhooks</td>
+                  <td className="px-6 py-4 text-gray-300">Real-time (seconds) + 5-min safety net</td>
+                  <td className="px-6 py-4 text-gray-400">Consult notes &amp; invoice line items</td>
+                  <td className="px-6 py-4 text-blue-400 font-semibold">~15 minutes</td>
+                </tr>
+                <tr className="hover:bg-gray-800/40">
+                  <td className="px-6 py-4 font-medium text-white flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                    IDEXX Cornerstone
+                  </td>
+                  <td className="px-6 py-4 text-gray-300">Cornerstone Hub API</td>
+                  <td className="px-6 py-4 text-gray-300">Automated 5-minute polling</td>
+                  <td className="px-6 py-4 text-gray-400">SOAP notes &amp; patient billing lines</td>
+                  <td className="px-6 py-4 text-blue-400 font-semibold">~15 minutes</td>
+                </tr>
+                <tr className="hover:bg-gray-800/40">
+                  <td className="px-6 py-4 font-medium text-white flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                    Universal (Any PIMS)
+                  </td>
+                  <td className="px-6 py-4 text-gray-300">Secure Copy &amp; Paste</td>
+                  <td className="px-6 py-4 text-gray-300">On-demand (immediate)</td>
+                  <td className="px-6 py-4 text-gray-400">Any text SOAP note &amp; invoice lines</td>
+                  <td className="px-6 py-4 text-blue-400 font-semibold">Instant (0 min)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
