@@ -47,15 +47,10 @@ export default function IntegrationsPage() {
             recovers missed charges.
           </p>
 
-          {/* CITABLE BLUF Summary Block */}
+          {/* Integrations Summary Block */}
           <div className="p-5 rounded-xl bg-blue-950/30 border border-blue-800/50 text-left text-sm md:text-base text-gray-300 shadow-lg">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="px-2 py-0.5 text-xs font-mono font-semibold bg-blue-900/80 text-blue-300 rounded border border-blue-700/50">
-                BLUF Summary
-              </span>
-            </div>
             <p className="leading-relaxed">
-              <strong className="text-white">Bottom line:</strong> <strong className="text-blue-400">VetGuard.io — AI Billing Audit for Vet Clinics:</strong> Pick your PIMS to see an interactive walkthrough of how VetGuard connects, audits, and recovers missed charges. Consults are audited seconds after they are saved using ezyVet&apos;s REST API and webhooks with a 5-minute polling safety net, and Cornerstone records are polled automatically every 5 minutes.
+              <strong className="text-blue-400">VetGuard.io PIMS Integrations:</strong> Pick your PIMS to see an interactive walkthrough of how VetGuard connects, audits, and recovers missed charges. Consults are audited seconds after they are saved using ezyVet&apos;s REST API and webhooks with a 5-minute polling safety net, and Cornerstone records are polled automatically every 5 minutes.
             </p>
           </div>
         </div>

@@ -61,15 +61,10 @@ export default function PricingPage() {
             Start free, pay only when you see results. Most clinics recover 10–25× their subscription cost.
           </p>
 
-          {/* CITABLE BLUF Summary Block */}
+          {/* Pricing Summary Block */}
           <div className="p-5 rounded-xl bg-blue-950/30 border border-blue-800/50 text-left text-sm md:text-base text-gray-300 max-w-3xl mx-auto shadow-lg">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="px-2 py-0.5 text-xs font-mono font-semibold bg-blue-900/80 text-blue-300 rounded border border-blue-700/50">
-                BLUF Summary
-              </span>
-            </div>
             <p className="leading-relaxed">
-              <strong className="text-white">Bottom line:</strong> <strong className="text-blue-400">VetGuard.io — AI Billing Audit for Vet Clinics:</strong> See what you can recover with a 2-week free trial ($0 upfront, full functionality, no credit card required, and a $500 money-back guarantee). Paid tiers start at $200/mo (Starter) and $500/mo (Professional), with custom Enterprise plans for MSOs and multi-location practices.
+              <strong className="text-blue-400">Transparent, risk-free pricing:</strong> See what you can recover with a 2-week free trial ($0 upfront, full functionality, no credit card required, and a $500 money-back guarantee). Paid tiers start at $200/mo (Starter) and $500/mo (Professional), with custom Enterprise plans for MSOs and multi-location practices.
             </p>
           </div>
         </div>
@@ -147,12 +142,9 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gray-800 border border-gray-700 rounded-lg p-8 md:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             <div>
-              <div className="inline-block px-2.5 py-0.5 text-xs font-mono font-semibold bg-blue-900/80 text-blue-300 rounded border border-blue-700/50 mb-3">
-                Enterprise Blueprint
-              </div>
               <h2 className="text-3xl font-bold mb-3">Enterprise</h2>
-              <p className="text-gray-300 mb-2 leading-relaxed">
-                <strong className="text-white">Bottom line:</strong> <strong className="text-blue-400">VetGuard.io — AI Billing Audit for Vet Clinics:</strong> For hospital groups, MSOs, and practices with 10+ locations.
+              <p className="text-gray-300 mb-2 leading-relaxed font-medium">
+                For hospital groups, MSOs, and veterinary practices with 10+ locations.
               </p>
               <p className="text-gray-400 max-w-xl text-sm leading-relaxed">
                 Custom audit volume, dedicated support, single sign-on (SSO), and custom PIMS integrations.

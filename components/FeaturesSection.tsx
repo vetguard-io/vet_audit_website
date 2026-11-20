@@ -40,15 +40,10 @@ export default function FeaturesSection() {
           <p className="text-xl text-gray-400">Works seamlessly with your existing tools</p>
         </div>
 
-        {/* CITABLE BLUF Summary Block */}
+        {/* Summary Block */}
         <div className="mb-16 p-5 rounded-xl bg-blue-950/30 border border-blue-800/50 text-left text-sm md:text-base text-gray-300 max-w-4xl mx-auto shadow-lg">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="px-2 py-0.5 text-xs font-mono font-semibold bg-blue-900/80 text-blue-300 rounded border border-blue-700/50">
-              BLUF Summary
-            </span>
-          </div>
           <p className="leading-relaxed">
-            <strong className="text-white">Bottom line:</strong> <strong className="text-blue-400">VetGuard.io — AI Billing Audit for Vet Clinics:</strong> VetGuard features veterinary-specific SOAP note analysis with veterinary abbreviation recognition, automated confidence scoring (high, medium, low), multi-clinic management, weekly email digests, staff training modules, and direct PIMS integrations for ezyVet and IDEXX Cornerstone alongside manual paste support.
+            <strong className="text-blue-400">VetGuard.io Platform Overview:</strong> VetGuard features veterinary-specific SOAP note analysis with veterinary abbreviation recognition, automated confidence scoring (high, medium, low), multi-clinic management, weekly email digests, staff training modules, and direct PIMS integrations for ezyVet and IDEXX Cornerstone alongside manual paste support.
           </p>
         </div>
 
